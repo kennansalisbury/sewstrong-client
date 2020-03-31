@@ -7,7 +7,7 @@ import { About } from '../About';
 import { Contact } from '../Contact';
 import { Landing } from '../Landing';
 // partials
-import { Footer, Header } from '../Partials';
+import { Footer } from '../Partials';
 // routes
 import * as ROUTES from '../../constants/routes';
 // styles
@@ -48,8 +48,6 @@ export const App = () => {
     return (
         <Router>
             <div>
-                <Header />
-
                 <Route exact path={ROUTES.LANDING}
                     render={() => 
                     <Landing user={user} updateUser={updateUser} />

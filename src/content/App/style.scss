@@ -1,0 +1,51 @@
+@import '../../scss/fonts.scss';
+@import '../../scss/mixins.scss';
+@import '../../scss/palette.scss';
+@import '../../scss/state.scss';
+.app {
+
+}
+.columns {
+    @include columns(1, $sm/2);
+    @include responsive( $med ) {
+        @include columns(2, $sm/2);
+    };
+    @include responsive( $lg ) {
+        @include columns(3, $med/2);
+    };
+    &__item {
+        display: block;
+        @include page-break-inside(avoid);
+        @include responsive( $med ) {
+            display: inline-block;
+        }
+    }
+}
+// fonts
+.body-one {
+    font-family: $sans-serif;
+    font-size: $body-one;
+}
+.body-two {
+    font-family: $sans-serif;
+    font-size: $body-two;
+}
+.heading-one {
+    font-family: $serif;
+    font-size: $heading-one;
+}
+.heading-two {
+    font-family: $serif;
+    font-size: $heading-two;
+}
+.heading-three {
+    font-family: $serif;
+    font-size: $heading-three;
+}
+// colors
+.background-green {
+    background-color: $content-green;
+}
+.background-orange {
+    background-color: $content-orange;
+}
