@@ -1,0 +1,9 @@
+@mixin columns($count, $width) {
+    -webkit-column-count: $count;
+    -moz-column-count: $count;
+    column-count: $count;
+
+    -webkit-column-width: $width;
+    -moz-column-width: $width;
+    column-width: $width;
+};

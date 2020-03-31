@@ -1,9 +1,9 @@
 // dependencies
 import React from 'react';
 
-export const App = () => {
+export const About = () => {
     return (
-        <div className='app'>
+        <div className=''>
 
         </div>
     )
