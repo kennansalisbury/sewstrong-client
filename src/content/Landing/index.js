@@ -15,7 +15,7 @@ export const Landing = props => {
     const [signupType, setSignupType] = useState('');
 
     return (
-        <div className='landing'>
+        <div className='columns landing'>
             <div className='landing landing-banner'>
                 <Header />
                 <Signup />
@@ -30,10 +30,15 @@ export const Landing = props => {
             </div>
             </div>
             <div className='landing landing-main'>
-                <br />
                 <div className='landing-main-box'>
-                    <InfoLarge text='Be a producer' />
-                    <InfoLarge text='Help deliver' />
+                    <InfoLarge 
+                        text='Create' 
+                        type='move-small'
+                    />
+                    <InfoLarge 
+                        text='Deliver' 
+                        type='move-big'
+                    />
                 </div>
                 <br />
                 <p className='body-two'>
@@ -54,7 +59,6 @@ export const Landing = props => {
                     <InfoSmall text='Face Shields' />
                     <InfoSmall text='Gowns' />
                 </div>
-                <br />
                 <CallToAction 
                     backgroundcolor={'background-green'}
                     setShowLogin={setShowLogin}
@@ -62,7 +66,6 @@ export const Landing = props => {
                     signupType={signupType}
                     text='REQUEST SUPPLIES'
                 />
-                <br />
             </div>
             <div className='landing landing-donate'>
                 <div className='landing-donate landing-donate-message'>
@@ -70,8 +73,16 @@ export const Landing = props => {
                     <p className='body-two'>
                         Your contributions help us provide our volunteers with the materials they need
                     </p>
-                    <CallToAction text='DONATE MONEY' />
-                    <CallToAction text='DONATE SUPPLIES' />
+                    <CallToAction 
+                        backgroundcolor={'background-orange'}
+                        text='DONATE MONEY' 
+                    />
+                    <br />
+                    <CallToAction 
+                        backgroundcolor={'background-orange'}
+                        text='DONATE SUPPLIES' 
+                    />
+                    <br />
                 </div>
             </div>
         </div>

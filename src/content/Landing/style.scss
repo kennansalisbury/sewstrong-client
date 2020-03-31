@@ -7,7 +7,9 @@
     align-items: center;
 }
 .landing-banner {
-    height: 60vh;
+    height: 70vh;
+    background-image: url('https://i.imgur.com/UhqaDR7.png');
+    background-size: cover;
 }
 .landing-banner-message {
     height: 40vh;
@@ -15,19 +17,26 @@
     text-align: center;
 }
 .landing-donate {
+    height: 60vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    background-image: url('https://i.imgur.com/8z0hJFR.png');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .landing-donate-message {
     width: 40vw;
+    background: transparent;
+    align-items: center;
 }
 .landing-main {
+    height: 150vh;
     justify-content: space-around;
 }
 .landing-main-box {
-    width: 80vw;
+    width: 70vw;
     height: 35vh;
     display: flex;
     flex-direction: row;
@@ -46,6 +55,7 @@
     cursor: pointer;
     color: white;
 }
+
 .info-small {
     height: 35vh;
     width: 20vw;
@@ -56,11 +66,22 @@
     border: 3px solid $content-green;
     cursor: default;
 }
+
 .info-large {
     height: 40vh;
     width: 30vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 3px solid $content-orange;
+    border-radius: 35px;
+}
+.move-small {
+    margin-top: 6em;
+    background-image: url('https://i.imgur.com/UBidHka.png');
+    color: $content-orange;
+}
+.move-big {
+    margin-top: 9em;
+    background-image: url('https://i.imgur.com/mvMIHty.png');
+    color: $content-orange;
 }
