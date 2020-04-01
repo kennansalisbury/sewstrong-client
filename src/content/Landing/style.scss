@@ -1,87 +1,115 @@
+@import '../../scss/mixins.scss';
 @import '../../scss/palette.scss';
 // page
 .landing {
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.landing-banner {
-    height: 70vh;
-    background-image: url('https://i.imgur.com/UhqaDR7.png');
-    background-size: cover;
-}
-.landing-banner-message {
-    height: 40vh;
-    width: 40vw;
-    text-align: center;
-}
-.landing-donate {
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-image: url('https://i.imgur.com/8z0hJFR.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-.landing-donate-message {
-    width: 40vw;
-    background: transparent;
-    align-items: center;
-}
-.landing-main {
-    height: 150vh;
     justify-content: space-around;
+    text-align: center;
+    &__banner {
+        background-image: url('https://i.imgur.com/UhqaDR7.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        @include responsive($med) {
+            height: 60vh;
+            background-size: cover;
+        }
+        @include responsive($lg) {
+            height: 70vh;
+        }
+        &__message {
+            margin: 50px auto;
+            width: 70%;
+            @include responsive($med) {
+                width: 50%;
+            }
+        }
+    }
+    &__main {
+        width: 95%;
+        &__box {
+            margin: 10px auto;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            @include responsive($med) {
+                justify-content: center;
+            }
+        }
+    }
 }
-.landing-main-box {
-    width: 70vw;
-    height: 35vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-}
-// components
+// // components
 .call-to-action {
-    padding: .5em;
-    height: 3vh;
-    width: 20vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 35px;
-    cursor: pointer;
-    color: white;
+    margin: 0 auto;
+    width: 50vw;
+    border-radius: 20px;
+    @include responsive($med) {
+        width: 33vw;
+    }
+    @include responsive($lg) {
+        height: 5vh;
+        width: 20vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
-
 .info-small {
-    height: 35vh;
-    width: 20vw;
+    height: 15vh;
+    width: 27vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $content-green;
-    border: 3px solid $content-green;
+    color: $brand-green;
+    border: 3px solid $brand-green;
+    border-radius: 20px;
     cursor: default;
-}
+    @include responsive($med) {
+        height: 20vh;
+        width: 25vw;
+        margin: 0 10px;
+    }
+    @include responsive($lg) {
+        height: 35vh;
+        width: 20vw;
+        margin: 0 2em;
 
+    }
+}
 .info-large {
-    height: 40vh;
-    width: 30vw;
+    height: 15vh;
+    width: 70vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 35px;
+    border-radius: 20px;
+    @include responsive($med) {
+        height: 25vh;
+        width: 35vw;
+        margin: 0 50px;
+    }
+    @include responsive($lg) {
+        height: 40vh;
+        width: 30vw;
+    }
 }
 .move-small {
-    margin-top: 6em;
     background-image: url('https://i.imgur.com/UBidHka.png');
     color: $content-orange;
+    @include responsive($lg) {
+        margin-top: 3em;
+    }
 }
 .move-big {
-    margin-top: 9em;
+    margin: 15px 0 -40px 0;
     background-image: url('https://i.imgur.com/mvMIHty.png');
     color: $content-orange;
+    @include responsive($lg) {
+        margin-top: 8em;
+    }
 }

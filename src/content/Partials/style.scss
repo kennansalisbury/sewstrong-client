@@ -1,45 +1,58 @@
 // imports
 @import '../../scss/fonts.scss';
 @import '../../scss/palette.scss';
-
-// Header
+@import '../../scss/mixins.scss';
+@import '../../scss/state.scss';
+// // Header
 .header {
-    width: 100%;
-    display: grid;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-.header-auth {
-    width: 20vw;
-    display: flex;
     justify-content: space-around;
+    &__title {
+        width: 20vw;
+    }
+    &__nav {
+        display: none;
+        @include responsive($med) {
+            width: 40vw;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        @include responsive($lg) {
+            display: inline-block;
+        }
+    }
+    &__auth {
+        width: 20vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        @include responsive($med) {
+        }
+        @include responsive($lg) {
+            flex-direction: row;
+        }
+    }
 }
-.header-title {
-    width: 20vw;
-    font-family: $serif;
-}
-.header-nav {
-    width: 40vw;
-    display: flex;
-    justify-content: space-around;
-}
-.header-nav-link {
-    text-decoration: none;
-    color: black;
-}
-
-// components
 .auth-link {
-    padding: .2em;
-    height: 3.5vh;
-    width: 8vw;
+    margin: 2px 0;
+    height: 3vh;
+    width: 25vw;
     display: flex;
     justify-content: center;
+    flex-direction: row;
     align-items: center;
-    font-family: $sans-serif;
-    font-size: $body-two;
     border-radius: 35px;
-    cursor: pointer;
-    color: white;
+    @include responsive($med) {
+        width: 20vw;
+    }
+    @include responsive($lg) {
+        flex-direction: row;
+        height: 4vh;
+        width: 10vw;
+    }
 }
