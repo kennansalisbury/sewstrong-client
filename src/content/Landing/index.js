@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 // components
-import { CallToAction, InfoSmall, InfoLarge, Login, Signup } from './components';
+import { CallToAction, InfoSmall, InfoLarge } from './components';
+// modals
+import { Login, Signup } from './modals';
 // partials
 import { Header } from '../Partials';
 // styles
@@ -14,12 +16,38 @@ export const Landing = props => {
     const [showLogin, setShowLogin] = useState(false);
     const [signupType, setSignupType] = useState('');
 
+    const closeModal = () => {
+        if (showSignup) {
+            setShowSignup(false);
+            setSignupType('');
+        }
+        if (showLogin) {
+            setShowLogin(false);
+        }
+    }
+
     return (
         <div className='landing'>
             <div className='landing__banner'>
-                <Header />
-                <Signup />
-                <Login />
+                <Header 
+                    setShowLogin={setShowLogin}
+                    setShowSignup={setShowSignup}
+                    user={props.user}
+                    updateUser={props.updateUser}
+                />
+                <Signup 
+                    closeModal={closeModal}
+                    setShowSignup={setShowSignup}
+                    setSignupType={setSignupType}
+                    showSignup={showSignup}
+                    signupType={signupType}
+                    updateUser={props.updateUser}
+                />
+                <Login 
+                    closeModal={closeModal}
+                    showLogin={showLogin}
+                    updateUser={props.updateUser}
+                />
             <div className='landing__banner__message'>
                 <p className='heading-one'>
                     Medical professionals are in need of masks and other equipment

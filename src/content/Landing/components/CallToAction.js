@@ -15,7 +15,7 @@ export const CallToAction = props => {
     };
 
     return (
-        <div className={`call-to-action ${props.backgroundcolor}`}>
+        <div className={`body-two call-to-action ${props.backgroundcolor}`}>
             <p className='body-two'>
                 {props.text}
             </p>
