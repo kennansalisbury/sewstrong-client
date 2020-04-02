@@ -18,10 +18,10 @@ export const Header = props => {
                     <p className='heading-two'>SewStrong</p>
                 </div>
                 <div className='header__nav'>
-                    <a className='header-nav-link body-two' href='#'>Home</a>
-                    <a className='header-nav-link body-two' href='#'>Volunteer</a>
-                    <a className='header-nav-link body-two' href='#'>Order</a>
-                    <a className='header-nav-link body-two' href='#'>Resources</a>
+                    <a className='header__nav__link body-two' href='#'>Home</a>
+                    <a className='header__nav__link body-two' href='#'>Volunteer</a>
+                    <a className='header__nav__link body-two' href='#'>Order</a>
+                    <a className='header__nav__link body-two' href='#'>Resources</a>
                 </div>
                 <div className='header__auth'>
                     <AuthLink text='SIGN UP' type='background-orange' setShowSignup={props.setShowSignup} />

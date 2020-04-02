@@ -1,5 +1,4 @@
 // imports
-@import '../../scss/fonts.scss';
 @import '../../scss/palette.scss';
 @import '../../scss/mixins.scss';
 @import '../../scss/state.scss';
@@ -25,6 +24,11 @@
         @include responsive($lg) {
             display: inline-block;
         }
+        &__link {
+            margin: .5em;
+            text-decoration: none;
+            color: black;
+        }
     }
     &__auth {
         width: 20vw;
@@ -47,6 +51,7 @@
     flex-direction: row;
     align-items: center;
     border-radius: 35px;
+    color: white;
     @include responsive($med) {
         width: 20vw;
     }
