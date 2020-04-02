@@ -89,7 +89,7 @@ export const Landing = props => {
                 </div>
                 <CallToAction 
                     backgroundcolor={'background-green'}
-                    setShowLogin={setShowLogin}
+                    setShowSignup={setShowSignup}
                     setSignupType={setSignupType}
                     signupType={signupType}
                     text='REQUEST SUPPLIES'

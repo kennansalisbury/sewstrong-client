@@ -13,7 +13,7 @@ export const AuthLink = props => {
         }
     };
     return (
-        <div className={`auth-link ${props.type} body-two`}>
+        <div className={`auth-link ${props.type} body-two`} onClick={handleClick}>
             <p className=''>
                 {props.text}
             </p>

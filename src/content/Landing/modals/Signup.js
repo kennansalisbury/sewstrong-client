@@ -9,13 +9,15 @@ export const Signup = props => {
     let callToActionButtons = '';
     if (!props.signupType) {
         callToActionButtons = (
-            <div>
+            <div className='modal__prompt'>
                 <CallToAction 
+                    backgroundcolor='background-orange'
                     setShowSignup={props.setShowSignup}
                     setSignupType={props.setSignupType}
                     text='VOLUNTEER'
                 />
                 <CallToAction
+                    backgroundcolor='background-green'
                     setShowSignup={props.setShowSignup}
                     setSignupType={props.setSignupType}
                     text='REQUEST SUPPLIES'
@@ -29,10 +31,14 @@ export const Signup = props => {
         return (
             <div className='modal'>
                 <p className='close-x' onClick={() => props.closeModal()}>X</p>
-                <div className='modal-content'>
-                    <p className='body-one modal-header'>Sign Up</p>
+                <div className='modal__content'>
+                    <p className='body-one modal__header'>Sign Up</p>
                     {callToActionButtons}
-                    <SignupForm signupType={props.signupType} updateUser={props.updateUser} closeModal={props.closeModal}/>
+                    <SignupForm 
+                        closeModal={props.closeModal}
+                        signupType={props.signupType} 
+                        updateUser={props.updateUser} 
+                    />
                 </div>
                 
             </div>
