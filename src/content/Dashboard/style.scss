@@ -1,0 +1,47 @@
+@import '../../scss/mixins.scss';
+@import '../../scss/palette.scss';
+@import '../../scss/state.scss';
+
+// dashboard
+.dashboard {
+    margin: 0 auto;
+    height: 80vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &__content {
+        z-index: 1;
+        height: 70vh;
+        width: 79.4vw;
+        border-top: none;
+        overflow: auto;
+    }
+    &__tab {
+        margin-bottom: -3px;
+        padding: 7.2px;
+        display: inline-block;
+        color: $brand-orange;
+        border-radius: 1px;
+        &__active {
+            border: 1px solid $brand-green;
+            background-color: $brand-green;
+            color: white;
+        }
+    }
+}
+// components
+.list__item {
+    &__closed {
+        height: 10vh;
+        width: 100%;
+        border: 3px solid $brand-green;
+        box-sizing: border-box;
+    }
+    &__open {
+        height: 20vh;
+        width: 100%;
+        background-color: $brand-green;
+        color: white;
+    }
+}

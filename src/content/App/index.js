@@ -5,6 +5,7 @@ import jwtDecode from 'jwt-decode';
 // pages
 import { About } from '../About';
 import { Contact } from '../Contact';
+import { Dashboard } from '../Dashboard';
 import { Landing } from '../Landing';
 // partials
 import { Footer } from '../Partials';
@@ -53,6 +54,8 @@ export const App = () => {
                     render={() => 
                     <Landing user={user} updateUser={updateUser} />
                 } />
+
+                <Route path={ROUTES.DASHBOARD} component={Dashboard} />
 
                 <Route path={ROUTES.ABOUT} component={About} />
 
