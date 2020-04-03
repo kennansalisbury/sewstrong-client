@@ -5,3 +5,14 @@
         @content;
     }
 };
+
+
+@mixin form-element-rows($number) {
+    .form-element-#{$number} {
+        grid-column: 1;
+        grid-row: #{$number};
+        text-align: left;
+        padding-left: 10%;
+        margin: 1%;
+    }
+};

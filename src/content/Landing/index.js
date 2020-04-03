@@ -55,20 +55,6 @@ export const Landing = props => {
                     user={props.user}
                     updateUser={props.updateUser}
                 />
-                <Signup 
-                    closeModal={closeModal}
-                    setShowSignup={setShowSignup}
-                    setSignupType={setSignupType}
-                    showSignup={showSignup}
-                    signupType={signupType}
-                    updateUser={props.updateUser}
-                    products={products}
-                />
-                <Login 
-                    closeModal={closeModal}
-                    showLogin={showLogin}
-                    updateUser={props.updateUser}
-                />
             <div className='landing__banner__message'>
                 <p className='heading-one'>
                     Medical professionals are in need of masks and other equipment
@@ -78,6 +64,20 @@ export const Landing = props => {
                 </p>
             </div>
             </div>
+            <Signup 
+                    closeModal={closeModal}
+                    setShowSignup={setShowSignup}
+                    setSignupType={setSignupType}
+                    showSignup={showSignup}
+                    signupType={signupType}
+                    updateUser={props.updateUser}
+                    products={products}
+                />
+            <Login 
+                closeModal={closeModal}
+                showLogin={showLogin}
+                updateUser={props.updateUser}
+            />
             <div className='landing__main'>
                 <div className='landing__main__box'>
                     <InfoLarge 
