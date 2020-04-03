@@ -8,7 +8,7 @@ export const CallToAction = props => {
         if (props.text === 'VOLUNTEER') {
             props.setSignupType('VOLUNTEER');
         } else if (props.text === 'REQUEST SUPPLIES') {
-            props.setSignupType('CLINIC');
+            props.setSignupType('CUSTOMER');
         } else {
             props.setShowSignup(false);
         };

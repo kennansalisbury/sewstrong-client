@@ -29,17 +29,21 @@ export const Login = props => {
                     props.updateUser(result.token)
                     setRedirect(true)
                 } else {
-                    setMessage(`${response.status} ${response.statusText}: ${result.message}`);
+                    setMessage(`${result.message}`);
                 }
             })
         })
         .catch(err => {
-            setMessage(`Errorr connecting to server, please try again later.`)
+            setMessage(`Error connecting to server, please try again later.`)
         })
     };
 
-    // input redirect code;
-    // one page which conditionally renders?
+    if(redirect) {
+        props.closeModal()
+        // input redirect code;
+         // one page which conditionally renders?
+    }
+
 
     if (!props.showLogin) {
         return null

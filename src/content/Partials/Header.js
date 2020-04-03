@@ -4,8 +4,7 @@ import React from 'react';
 import { AuthLink } from './components';
 
 export const Header = props => {
-
-    const handleLogout = e => {
+    const handleLogout = () => {
         localStorage.removeItem('userToken');
         props.updateUser(null);
     }
@@ -31,7 +30,10 @@ export const Header = props => {
         )
     } else {
         return (
-            <div></div>
+            <div>
+                Hi {props.user.firstName}
+                <AuthLink text='LOGOUT' type='background-green' handleLogout={handleLogout}/>
+            </div>
         )
     }
 };
