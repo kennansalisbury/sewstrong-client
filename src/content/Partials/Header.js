@@ -1,7 +1,7 @@
 // dependencies
 import React from 'react';
 // components
-import { AuthLink } from './components';
+import { AuthLink, Menu } from './components';
 
 export const Header = props => {
     const handleLogout = () => {
@@ -9,10 +9,9 @@ export const Header = props => {
         props.updateUser(null);
     }
 
-    if (!props.user) {
+    if (props.user) {
         return (
             <div className='header'>
-                {/* <h1 className='header-title'>SewStrong</h1> */}
                 <div className='header__title'>
                     <p className='heading-two'>SewStrong</p>
                 </div>
@@ -30,9 +29,10 @@ export const Header = props => {
         )
     } else {
         return (
-            <div>
-                Hi {props.user.firstName}
-                <AuthLink text='LOGOUT' type='background-green' handleLogout={handleLogout}/>
+            <div className='header'>
+                <div className='header__title'>
+                    <p className='heading-two'>SewStrong</p>
+                </div>
             </div>
         )
     }
