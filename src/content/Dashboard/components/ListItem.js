@@ -14,7 +14,7 @@ export const ListItem = props => {
 
     return (
         <div className='list__item__closed' onClick={toggleData}>
-            
+            {props.text}
         </div>
     )
 };

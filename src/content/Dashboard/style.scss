@@ -15,6 +15,7 @@
         height: 70vh;
         width: 79.4vw;
         border-top: none;
+        overflow: auto;
     }
     &__tab {
         margin-bottom: -3px;
@@ -27,5 +28,20 @@
             background-color: $brand-green;
             color: white;
         }
+    }
+}
+// components
+.list__item {
+    &__closed {
+        height: 10vh;
+        width: 100%;
+        border: 3px solid $brand-green;
+        box-sizing: border-box;
+    }
+    &__open {
+        height: 20vh;
+        width: 100%;
+        background-color: $brand-green;
+        color: white;
     }
 }

@@ -23,16 +23,13 @@ export const Volunteer = props => {
             </p>
         )
     })
-
-
-
     return (
         <div className='dashboard'>
             <div className='dashboard__tabs'>
                 {tabs}
             </div>
             <div className='dashboard__content'>
-
+                {/* LIST ITEMS HERE */}
             </div>
         </div>
     )
