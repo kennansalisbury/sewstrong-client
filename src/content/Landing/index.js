@@ -1,5 +1,5 @@
 // dependencies
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 // components
 import { CallToAction, InfoSmall, InfoLarge } from './components';
@@ -15,6 +15,26 @@ export const Landing = props => {
     const [showSignup, setShowSignup] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [signupType, setSignupType] = useState('');
+    const [products, setProducts] = useState('')
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/products`)
+        .then(response => {
+            response.json()
+            .then(results => {
+                if (response.ok) {
+                    console.log('products', results)
+                    setProducts(results);
+                } else {
+                    console.log(results.message);
+                }
+            })
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }, [])
+
 
     const closeModal = () => {
         if (showSignup) {
@@ -42,6 +62,7 @@ export const Landing = props => {
                     showSignup={showSignup}
                     signupType={signupType}
                     updateUser={props.updateUser}
+                    products={products}
                 />
                 <Login 
                     closeModal={closeModal}

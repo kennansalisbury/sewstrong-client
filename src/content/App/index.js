@@ -30,6 +30,7 @@ export const App = () => {
                 setUser(null);
             } else {
                 setUser(decoded);
+                console.log(decoded)
             }
         } else {
             setUser(null);
