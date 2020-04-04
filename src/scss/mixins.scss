@@ -5,3 +5,32 @@
         @content;
     }
 };
+
+
+@mixin form-element-rows($number) {
+    .form-element-#{$number} {
+        grid-column: 1;
+        grid-row: #{$number};
+        text-align: left;
+        padding-left: 10%;
+        margin: 1%;
+    }
+};
+
+@mixin order-view-header($number) {
+    .order-header-#{$number} {
+        grid-column: #{$number};
+        grid-row: 1;
+        text-align: left;
+    }
+};
+
+@mixin order-view-element($row, $col) {
+    .order-row#{$row}-col#{$col} {
+        grid-column: #{$col};
+        grid-row: #{$row};
+        text-align: left;
+        padding-left: 10%;
+        margin: 1%;
+    }
+};

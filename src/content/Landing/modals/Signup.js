@@ -30,7 +30,7 @@ export const Signup = props => {
     } else if (props.showSignup) {
         return (
             <div className='modal'>
-                <p className='close-x' onClick={() => props.closeModal()}>X</p>
+                <div className='close-x' onClick={() => props.closeModal()}>X</div>
                 <div className='modal__content'>
                     <p className='body-one modal__header'>Sign Up</p>
                     {callToActionButtons}

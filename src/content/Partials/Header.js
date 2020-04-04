@@ -9,7 +9,7 @@ export const Header = props => {
         props.updateUser(null);
     }
 
-    if (props.user) {
+    if (!props.user) {
         return (
             <div className='header'>
                 <div className='header__title'>
@@ -30,6 +30,7 @@ export const Header = props => {
     } else {
         return (
             <div className='header'>
+                <AuthLink text='LOGOUT' type='background-green' handleLogout={handleLogout} />
                 <div className='header__title'>
                     <p className='heading-two'>SewStrong</p>
                 </div>

@@ -33,15 +33,32 @@
 // components
 .list__item {
     &__closed {
-        height: 10vh;
+        // height: 10vh;
         width: 100%;
         border: 3px solid $brand-green;
         box-sizing: border-box;
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: flex-start;
     }
     &__open {
-        height: 20vh;
+        // height: 20vh;
         width: 100%;
         background-color: $brand-green;
         color: white;
+        & .order {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(auto, 1fr);
+            @include order-view-header(1);
+            @include order-view-header(2);
+            @include order-view-header(3);
+            @include order-view-element(2, 1);
+            @include order-view-element(2, 2);
+            @include order-view-element(2, 3);
+            @include order-view-element(2, 4);
+            @include order-view-element(2, 5);
+        }
     }
+
 }
