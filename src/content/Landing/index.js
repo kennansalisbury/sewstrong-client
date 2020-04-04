@@ -15,26 +15,6 @@ export const Landing = props => {
     const [showSignup, setShowSignup] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [signupType, setSignupType] = useState('');
-    const [products, setProducts] = useState('')
-
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER_URL}/products`)
-        .then(response => {
-            response.json()
-            .then(results => {
-                if (response.ok) {
-                    console.log('products', results)
-                    setProducts(results);
-                } else {
-                    console.log(results.message);
-                }
-            })
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }, [])
-
 
     const closeModal = () => {
         if (showSignup) {
@@ -71,7 +51,7 @@ export const Landing = props => {
                     showSignup={showSignup}
                     signupType={signupType}
                     updateUser={props.updateUser}
-                    products={products}
+                    products={props.products}
                 />
             <Login 
                 closeModal={closeModal}

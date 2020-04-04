@@ -16,10 +16,10 @@ export const Dashboard = props => {
 
     return (
         <>
-            <Header 
+            <Header user={props.user} updateUser={props.updateUser}/>
                 
             />
-            <Volunteer />
+            <Volunteer user={props.user} products={props.products} />
         </>
     )
 }
