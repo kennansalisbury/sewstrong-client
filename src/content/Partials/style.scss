@@ -10,8 +10,14 @@
     align-items: center;
     justify-content: space-around;
     &__title {
-        width: 100%;
+        width: 50%;
         text-align: center;
+        @include responsive($med) {
+            width: 30vw;
+        }
+        @include responsive($lg) {
+            width: 20vw;
+        }
     }
     &__nav {
         display: none;
@@ -20,7 +26,7 @@
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content: space-around;
+            text-align: center;
         }
         @include responsive($lg) {
             display: inline-block;

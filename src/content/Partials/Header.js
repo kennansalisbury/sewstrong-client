@@ -9,7 +9,7 @@ export const Header = props => {
         props.updateUser(null);
     }
 
-    if (props.user) {
+    if (!props.user) {
         return (
             <div className='header'>
                 <div className='header__title'>

@@ -55,7 +55,10 @@ export const App = () => {
                     <Landing user={user} updateUser={updateUser} />
                 } />
 
-                <Route path={ROUTES.DASHBOARD} component={Dashboard} />
+                <Route path={ROUTES.DASHBOARD}
+                    render={() =>
+                    <Dashboard user={user} updateUser={updateUser} /> 
+                } />
 
                 <Route path={ROUTES.ABOUT} component={About} />
 
