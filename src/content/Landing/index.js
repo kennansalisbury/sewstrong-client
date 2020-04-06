@@ -15,26 +15,6 @@ export const Landing = props => {
     const [showSignup, setShowSignup] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [signupType, setSignupType] = useState('');
-    const [products, setProducts] = useState('')
-
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER_URL}/products`)
-        .then(response => {
-            response.json()
-            .then(results => {
-                if (response.ok) {
-                    console.log('products', results)
-                    setProducts(results);
-                } else {
-                    console.log(results.message);
-                }
-            })
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }, [])
-
 
     const closeModal = () => {
         if (showSignup) {
@@ -55,20 +35,6 @@ export const Landing = props => {
                     user={props.user}
                     updateUser={props.updateUser}
                 />
-                <Signup 
-                    closeModal={closeModal}
-                    setShowSignup={setShowSignup}
-                    setSignupType={setSignupType}
-                    showSignup={showSignup}
-                    signupType={signupType}
-                    updateUser={props.updateUser}
-                    products={products}
-                />
-                <Login 
-                    closeModal={closeModal}
-                    showLogin={showLogin}
-                    updateUser={props.updateUser}
-                />
             <div className='landing__banner__message'>
                 <p className='heading-one'>
                     Medical professionals are in need of masks and other equipment
@@ -78,6 +44,20 @@ export const Landing = props => {
                 </p>
             </div>
             </div>
+            <Signup 
+                    closeModal={closeModal}
+                    setShowSignup={setShowSignup}
+                    setSignupType={setSignupType}
+                    showSignup={showSignup}
+                    signupType={signupType}
+                    updateUser={props.updateUser}
+                    products={props.products}
+                />
+            <Login 
+                closeModal={closeModal}
+                showLogin={showLogin}
+                updateUser={props.updateUser}
+            />
             <div className='landing__main'>
                 <div className='landing__main__box'>
                     <InfoLarge 

@@ -17,10 +17,31 @@ import './style.scss';
 export const App = () => {
 
     const [user, setUser] = useState(null);
+    const [products, setProducts] = useState('')
 
     useEffect(() => {
         decodeToken()
     }, []);
+
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/products`)
+        .then(response => {
+            response.json()
+            .then(results => {
+                if (response.ok) {
+                    console.log('products', results)
+                    setProducts(results);
+                } else {
+                    console.log(results.message);
+                }
+            })
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }, [])
+
 
     const decodeToken = existingToken => {
         let token = existingToken || localStorage.getItem('userToken');
@@ -31,7 +52,6 @@ export const App = () => {
                 setUser(null);
             } else {
                 setUser(decoded);
-                console.log(decoded)
             }
         } else {
             setUser(null);
@@ -52,13 +72,13 @@ export const App = () => {
             <div>
                 <Route exact path={ROUTES.LANDING}
                     render={() => 
-                    <Landing user={user} updateUser={updateUser} />
+                    <Landing user={user} updateUser={updateUser} products={products}/>
                 } />
 
-                <Route path={ROUTES.DASHBOARD}
+                <Route path={ROUTES.DASHBOARD} 
                     render={() =>
-                    <Dashboard user={user} updateUser={updateUser} /> 
-                } />
+                    <Dashboard user={user} updateUser={updateUser} products={products} />
+                }/>
 
                 <Route path={ROUTES.ABOUT} component={About} />
 

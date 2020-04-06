@@ -51,20 +51,21 @@ export const Login = props => {
         return (
             <div className='modal'>
                 <div className='close-x' onClick={() => props.closeModal()}>X</div>
-                <div className='modal-content'>
-                    <p className='body-one modal-header'>Login</p>
-                    <form className='modal-form' onSubmit={handleSubmit}>
-                        <label>Email</label>
-                        <input type="text" value={email} onChange={e => setEmail(e.currentTarget.value)} />
+                <div className='modal__content'>
+                    <p className='body-one modal__header'>Login</p>
+                    <form className='modal__login' onSubmit={handleSubmit}>
+                        <label className="form-element-1">Email
+                            <input type="text" value={email} onChange={e => setEmail(e.currentTarget.value)} />
+                        </label>
+                        <label className="form-element-2">Password
+                            <input type="password" value={password} onChange={e => setPassword(e.currentTarget.value)} />
+                        </label>
+
                     
-                        <label>Password</label>
-                        <input type="password" value={password} onChange={e => setPassword(e.currentTarget.value)} />
-                        <small>Password field is case sensitive.</small>
-                    
-                        <input type="submit" value="Login"/>
+                        <input className="form-element-3" type="submit" value="Login"/>
 
                         {/* error messages show here */}
-                        {message}
+                        <small className="form-element-4">{message}</small>
 
                     </form>
                 </div>
