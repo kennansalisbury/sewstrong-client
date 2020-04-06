@@ -42,7 +42,6 @@ export const App = () => {
         })
     }, [])
 
-
     const decodeToken = existingToken => {
         let token = existingToken || localStorage.getItem('userToken');
         let decoded;

@@ -1,7 +1,7 @@
 // dependencies
 import React, { useState, useEffect } from 'react';
 // components
-import { ListItem } from './components';
+import { ListItem, OrgNeed, MakeImpact } from './components';
 
 export const Volunteer = props => {
     
@@ -9,8 +9,8 @@ export const Volunteer = props => {
     const [userInfo, setUserInfo] = useState(['Inventory','Info','Team Lead','Orders']);
     const [activeTab, setActiveTab] = useState(userInfo[0]);
     const [inventory, setInventory] = useState([])
+    const [showModal, setShowModal] = useState(false)
 
-   
     //on render, populate state needs
     //1) user type
     useEffect(() => {
@@ -50,9 +50,6 @@ export const Volunteer = props => {
         let product = props.products.filter(product => product._id === prodId)
         return product[0].name
     }
-
-    console.log('user', props.user)
-
 
     const handleTabSelect = e => {
         setActiveTab(e.target.getAttribute('name'));
@@ -99,13 +96,20 @@ export const Volunteer = props => {
 
     return (
         <div className='dashboard'>
-            <div className='dashboard__tabs'>
-                {tabs}
+            
+            <OrgNeed />
+
+            <MakeImpact products={props.products} user={props.user} showModal={showModal} setShowModal={setShowModal} />
+
+            <div className='dashboard__tabs_content'>
+                <div className='dashboard__tabs'>
+                    {tabs}
+                </div>
+                <div className='dashboard__content'>
+                    {listItems}
+                </div>
             </div>
-            <div className='dashboard__content'>
-                {/* LIST ITEMS HERE */}
-                {listItems}
-            </div>
+            
         </div>
     )
 };
