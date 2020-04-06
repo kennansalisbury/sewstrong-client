@@ -33,7 +33,7 @@ export const OrgNeed = props => {
     
     return (
         <div className='dashboard__org-need'>
-            <h1>Current Need</h1>
+            <p className='heading-two'>Current Need</p>
             {demandList}
         </div>
     )

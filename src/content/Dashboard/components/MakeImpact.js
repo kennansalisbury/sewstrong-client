@@ -39,7 +39,7 @@ export const MakeImpact = props => {
     return (
         <div className='dashboard__make-impact'>
             <PledgeModal showModal={props.showModal} setShowModal={props.setShowModal} product={modalProduct} userId={props.user._id} production={modalProduction} />
-            <h1>Make an Impact</h1>
+            <p className='heading-two'>Make an Impact</p>
             {buttons}
         </div>
     )

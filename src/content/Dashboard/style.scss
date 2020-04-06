@@ -105,4 +105,11 @@
     border-radius: 5%;
     background: white;
     padding: 3%;
+
+    & .close-x {
+        text-align: right;
+        cursor: pointer;
+        grid-row: 1;
+        grid-column: 1;
+    }
 }

@@ -133,7 +133,8 @@
     grid-template-rows: 5% 1fr;
     & p {
         margin: 0;
-    } .close-x {
+    } 
+    & .close-x {
         text-align: right;
         padding: 10px;
         cursor: pointer;
