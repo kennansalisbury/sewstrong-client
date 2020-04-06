@@ -7,7 +7,9 @@ export const PledgeModal = props => {
     const [currentInventory, setCurrentInventory] = useState(0)
     const [pledgeErrorMessage, setPledgeErrorMessage] = useState('')
     const [inventoryErrorMessage, setInventoryErrorMessage] = useState('')
-
+    const [pickUpDelivery, setPickUpDelivery] = useState(true)
+    const [selfDelivery, setSelfDelivery] = useState(false)
+    
     if(!props.showModal) {
         return null
     }
@@ -34,6 +36,10 @@ export const PledgeModal = props => {
 
         //make pledge goal a date object
 
+        //final data to include in fetch should look like:
+            // maker {
+            //     makerPledge: 
+            // }
     
     }
 
@@ -46,6 +52,40 @@ export const PledgeModal = props => {
             setInventoryErrorMessage('Please include a quantity. If you have not made any masks yet, you do not need to indicate that anywhere. Try making a pledge instead!')
             return
         }
+
+        //final data to include in fetch should look like:
+        let data = {
+            _id: props.productionId,
+            product: props.product._id,
+            currentInventory: currentInventory,
+            producedToDate: props.producedToDate + currentInventory,
+            selfDelivery,
+            pickUpDelivery
+        }
+        
+        let token = localStorage.getItem('userToken');
+        fetch(`${process.env.REACT_APP_SERVER_URL}/volunteers/production`, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json' 
+            }
+        })
+        .then(response => {
+            response.json()
+            .then(results => {
+                if (response.ok) {
+                    console.log('UPDATED 🌈🌈🌈', results)
+                    props.updateUser(results.token)
+                } else {
+                    console.log(results.message);
+                }
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
     
     return (
@@ -67,8 +107,16 @@ export const PledgeModal = props => {
             <form onSubmit={handleCurrentInventorySubmit}>
                 <input type="number" min="0" step="10" value={currentInventory} onChange={e => {setCurrentInventory(e.currentTarget.value); setInventoryErrorMessage('')}} />
                 <label className="body-three"> {props.product.name.toUpperCase()}S</label>
+                
+                <div>
+                    <input type="radio" checked={pickUpDelivery === true} onChange={e => {setPickUpDelivery(e.currentTarget.checked); setSelfDelivery(!e.currentTarget.checked)}} />
+                    <label className="body-three">Request a Pick-up</label>
+                    <input type="radio" checked={selfDelivery === true} onChange={e => {setSelfDelivery(e.currentTarget.checked); setPickUpDelivery(!e.currentTarget.checked)}} />
+                    <label className="body-three">I'll deliver myself</label>
+                </div>
 
                 <input type="submit" value="NEXT"/>
+
                 {inventoryErrorMessage}
 
             </form>

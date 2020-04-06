@@ -37,7 +37,8 @@ export const Signup = props => {
                     <SignupForm 
                         closeModal={props.closeModal}
                         signupType={props.signupType} 
-                        updateUser={props.updateUser} 
+                        updateUser={props.updateUser}
+                        products={props.products}
                     />
                 </div>
                 

@@ -99,7 +99,7 @@ export const Volunteer = props => {
             
             <OrgNeed />
 
-            <MakeImpact products={props.products} user={props.user} showModal={showModal} setShowModal={setShowModal} />
+            <MakeImpact products={props.products} user={props.user} updateUser={props.updateUser} showModal={showModal} setShowModal={setShowModal} />
 
             <div className='dashboard__tabs_content'>
                 <div className='dashboard__tabs'>
@@ -109,7 +109,7 @@ export const Volunteer = props => {
                     {listItems}
                 </div>
             </div>
-            
+
         </div>
     )
 };

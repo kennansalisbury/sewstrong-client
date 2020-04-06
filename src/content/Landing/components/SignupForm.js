@@ -92,6 +92,13 @@ export const SignupForm = props => {
 
         //Set data based on user type
         let data
+        let makerProduction = props.products.map(product => {
+            return ({
+                product: product._id,
+                currentInventory: 0,
+                producedToDate: 0
+            })
+        })
 
         //VOLUNTEER ------------------
 
@@ -109,6 +116,7 @@ export const SignupForm = props => {
                     city,
                     state,
                     zipcode,
+                    makerProduction: makerProduction
                 },
                 other
             }
@@ -141,6 +149,7 @@ export const SignupForm = props => {
                     city,
                     state,
                     zipcode,
+                    makerProduction: makerProduction
                 },
                 driver: { zipcode },
                 other
