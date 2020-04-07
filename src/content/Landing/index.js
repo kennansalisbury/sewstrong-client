@@ -26,6 +26,10 @@ export const Landing = props => {
         }
     }
 
+    if(props.user) {
+        return <Redirect to="/dashboard"/>
+    }
+
     return (
         <div className='landing'>
             <div className='landing__banner'>

@@ -1,5 +1,6 @@
 // dependencies
 import React from 'react';
+import {Redirect} from 'react-router-dom'
 // components
 import { AuthLink, Menu } from './components';
 
