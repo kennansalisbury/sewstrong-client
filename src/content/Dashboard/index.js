@@ -10,9 +10,9 @@ import './style.scss';
 
 export const Dashboard = props => {
 
-    // if (!props.user) {
-    //     return <Redirect to='/' />
-    // }
+    if (!props.user) {
+        return <Redirect to='/' />
+    }
 
     return (
         <>

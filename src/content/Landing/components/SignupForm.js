@@ -248,14 +248,8 @@ export const SignupForm = props => {
         return null
     }
 
-    if(redirect) {
-        props.closeModal()
-        // input redirect code;
-        // one page which conditionally renders?
-    }
-
     let allUserInputs = (
-        <div className="inputs-1">
+        <div className="all-user-inputs">
 
                 <label className="form-element-1">FIRST NAME* 
                     <input type="text" required value={firstName} onChange={e => setFirstName(e.currentTarget.value)} />
@@ -315,7 +309,7 @@ export const SignupForm = props => {
         header = 'VOLUNTEER'
         if(isMaker || (isMaker && isDriver)) {
             volunteerDynamicInputs = (
-                <div className="inputs-3-maker">
+                <div className="volunteer-inputs__2-maker">
              
                     <label className="form-element-1" >ADDRESS LINE 1
                         <input type="text" value={address1} onChange={e => setAddress1(e.currentTarget.value)} /> 
@@ -349,7 +343,7 @@ export const SignupForm = props => {
         }
         if(isDriver && !isMaker) {
             volunteerDynamicInputs = (
-                <div className="inputs-3-driver">
+                <div className="volunteer-inputs__2-driver">
                     <label className="form-element-1">ZIPCODE*
                         <input type="text" required value={zipcode} maxLength="5" onChange={e => {setZipcode(e.currentTarget.value)}} />
                     </label>
@@ -360,7 +354,7 @@ export const SignupForm = props => {
         }
 
         volunteerInputs = ( 
-            <div className="inputs-2-volunteer">
+            <div className="volunteer-inputs__all">
                 <p className='form-element-1'>I WOULD LIKE TO: <span className="small-text">(choose all that apply)</span></p>
                 <div className='form-element-2 input-checkbox'>
                     <label className="small-text">  
@@ -382,7 +376,7 @@ export const SignupForm = props => {
                     <input type='text' onChange={e => setOther(e.currentTarget.value)} />
                 </div>
 
-                <small>{volunteerChecksError}</small>
+                <small className="form-element-6" >{volunteerChecksError}</small>
 
                 {volunteerDynamicInputs}
 
@@ -466,13 +460,17 @@ export const SignupForm = props => {
         <>
             <p className='body-two'>{header}</p>
             <form className='modal__form' onSubmit={handleSubmit}>
+            
                 {allUserInputs}
                 {volunteerInputs}
                 {customerInputs}
+                <div className='form-bottom'>
+                    <input  type="submit" value="Sign Up"/>
+                    <small>{errorMessage}</small>
+                    <p className="small-text">Required*</p>
+                </div>
             </form>
-            <input type="submit" value="Sign Up"/>
-            <small>{errorMessage}</small>
-            <p className="small-text">Required*</p>
+
         </>
     )
 }
