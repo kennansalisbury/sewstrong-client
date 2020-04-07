@@ -23,14 +23,12 @@ export const App = () => {
         decodeToken()
     }, []);
 
-
     useEffect(() => {
         fetch(`${process.env.REACT_APP_SERVER_URL}/products`)
         .then(response => {
             response.json()
             .then(results => {
                 if (response.ok) {
-                    console.log('products', results)
                     setProducts(results);
                 } else {
                     console.log(results.message);
@@ -66,6 +64,7 @@ export const App = () => {
         }
     };
 
+    console.log('USER at app level', user)
     return (
         <Router>
             <div>

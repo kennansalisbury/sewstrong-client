@@ -37,8 +37,8 @@ export const Volunteer = props => {
                 return(
                     {
                     product: productName,
-                    currentInventory: product.currentInventory,
-                    producedToDate: product.producedToDate
+                    currentInventory: product.currentInventory || product.inventory,
+                    producedToDate: product.producedToDate || null
                 }
                 )
             })
@@ -81,11 +81,11 @@ export const Volunteer = props => {
             listItems = <ListItem text={props.user.firstName + ' ' + props.user.lastName} data={props.user} user={props.user} getProductName={getProductName} />
         }
         else if(activeTab === 'Team Lead') {
-            listItems = <ListItem text={teamLead ? teamLead.firstName + ' ' +  teamLead.lastName : 'You have not been assigned a team lead yet.'} data={teamLead} user={props.user} getProductName={getProductName}/>
+            listItems = <ListItem text={teamLead ? teamLead.firstName + ' ' +  teamLead.lastName : 'You have not been assigned a team lead yet.'} data={teamLead || 'no data'} user={props.user} getProductName={getProductName}/>
         }
         else if(activeTab === 'Orders') {
             if(!props.user.orders) {
-                listItems = <ListItem text={'You have not been assigned to any orders yet'} data={null} user={props.user} getProductName={getProductName} />
+                listItems = <ListItem text='You have not been assigned to any orders yet' data={'no data'} user={props.user} getProductName={getProductName} />
             }
             listItems = props.user.orders.map((order, i) => {
                 return <ListItem text={`Order: ${order.orderNumber}`} data={order} user={props.user} getProductName={getProductName}/>

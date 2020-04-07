@@ -7,19 +7,26 @@ export const ListItem = props => {
     const [orderStatus, setOrderStatus] = useState('')
 
     useEffect(() => {
-        if(props.data.orderNumber) {
-            props.data.readyForDelivery ? setOrderStatus('Ready for Delivery') :
-            props.data.collected ? setOrderStatus('Delivery in progress') :
-            props.data.delivered ? setOrderStatus('Delivered') :
-            props.data.orgReceived ? setOrderStatus('Complete') :
-            props.data.cancelled ? setOrderStatus('Cancelled') :
-            setOrderStatus('Awaiting inventory')
+        if(props.data) {
+            if(props.data.orderNumber) {
+                props.data.readyForDelivery ? setOrderStatus('Ready for Delivery') :
+                props.data.collected ? setOrderStatus('Delivery in progress') :
+                props.data.delivered ? setOrderStatus('Delivered') :
+                props.data.orgReceived ? setOrderStatus('Complete') :
+                props.data.cancelled ? setOrderStatus('Cancelled') :
+                setOrderStatus('Awaiting inventory')
+            }
         }
-    },[props.data.readyForDelivery, props.data.collected, props.data.delivered, props.data.orgReceived, props.data.cancelled])
+        
+    },[props.data])
     
     let accordianClassName = 'list__item__closed'
     const toggleData = e => { 
         accordianClassName === 'list__item__closed' ? setToggle(true) : setToggle(false)
+    }
+
+    if(!props.data) {
+        return null
     }
 
     let content
@@ -52,7 +59,7 @@ export const ListItem = props => {
         if(props.data.product) {
             hiddenContent = (
                 <div>
-                    <p>Produced to Date: {props.data.producedToDate}</p>
+                    {/* <p>Produced to Date: {props.data.producedToDate}</p> */}
                     <div className='auth-link background-orange body-two`'>Ready for delivery?</div>
                     <div className='auth-link background-orange body-two`'>Update Inventory</div>
                 </div>
@@ -94,8 +101,9 @@ export const ListItem = props => {
         }
        
     }
-   
-    console.log(props.data)
+
+    console.log('PROOOOOPS', props)
+
     return (
         <div>
             
@@ -103,7 +111,6 @@ export const ListItem = props => {
             <p>{props.text}</p>
             {content}
             {hiddenContent}
-            {/* <p className="hide-content">Test Content</p> */}
             </div>
             
             

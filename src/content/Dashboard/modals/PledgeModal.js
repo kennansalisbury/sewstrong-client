@@ -14,58 +14,10 @@ export const PledgeModal = props => {
         return null
     }
 
-    const handlePledgeSubmit = e => {
-        e.preventDefault()
-        console.log('Pledge Qty:', pledgeQty, 'Pledge Goal:', pledgeGoal, typeof pledgeGoal)
-        
-        //first, verify that both fields have a value
-        if(pledgeQty > 0 && !pledgeGoal) {
-            setPledgeErrorMessage('All pledges must have a quantity and date associated. Please enter a pledge date')
-            return
-        }
-
-        if(pledgeGoal && pledgeQty === 0) {
-            setPledgeErrorMessage('All pledges must have a quantity and date associated. Please enter a pledge quantity')
-            return
-        }
-
-        if(pledgeQty === 0 && !pledgeGoal) {
-            setPledgeErrorMessage('All pledges must have a quantity and date associated.')
-            return
-        }
-
-        //make pledge goal a date object
-
-        //final data to include in fetch should look like:
-            // maker {
-            //     makerPledge: 
-            // }
-    
-    }
-
-    const handleCurrentInventorySubmit = e => {
-        e.preventDefault()
-        console.log('Current Inventory:', currentInventory)
-
-        //first, verify a quantity has been set above 0
-        if(currentInventory === 0 ) {
-            setInventoryErrorMessage('Please include a quantity. If you have not made any masks yet, you do not need to indicate that anywhere. Try making a pledge instead!')
-            return
-        }
-
-        //final data to include in fetch should look like:
-        let data = {
-            _id: props.productionId,
-            product: props.product._id,
-            currentInventory: currentInventory,
-            producedToDate: props.producedToDate + currentInventory,
-            selfDelivery,
-            pickUpDelivery
-        }
-        
+    const postData = (link, data) => {
         let token = localStorage.getItem('userToken');
-        fetch(`${process.env.REACT_APP_SERVER_URL}/volunteers/production`, {
-            method: 'PUT',
+        fetch(`${process.env.REACT_APP_SERVER_URL}/volunteers/${link}`, {
+            method: 'POST',
             body: JSON.stringify(data),
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -86,6 +38,57 @@ export const PledgeModal = props => {
         .catch(err => {
             console.log(err)
         })
+    }
+
+    const handlePledgeSubmit = e => {
+        e.preventDefault()
+        
+        //first, verify that both fields have a value
+        if(pledgeQty > 0 && !pledgeGoal) {
+            setPledgeErrorMessage('All pledges must have a quantity and date associated. Please enter a pledge date')
+            return
+        }
+
+        if(pledgeGoal && pledgeQty === 0) {
+            setPledgeErrorMessage('All pledges must have a quantity and date associated. Please enter a pledge quantity')
+            return
+        }
+
+        if(pledgeQty === 0 && !pledgeGoal) {
+            setPledgeErrorMessage('All pledges must have a quantity and date associated.')
+            return
+        }
+
+        //final data to include in fetch should look like:
+        let data = {
+            product: props.product._id,
+            pledgeQty,
+            pledgeGoal: new Date(pledgeGoal),
+            readyForDelivery: false
+        }
+
+        postData('pledge', data)
+    }
+
+    const handleCurrentInventorySubmit = e => {
+        e.preventDefault()
+
+        //first, verify a quantity has been set above 0
+        if(currentInventory === 0 ) {
+            setInventoryErrorMessage('Please include a quantity. If you have not made any masks yet, you do not need to indicate that anywhere. Try making a pledge instead!')
+            return
+        }
+
+        //final data to include in fetch should look like:
+        let data = {
+            product: props.product._id,
+            inventory: currentInventory,
+            selfDelivery,
+            pickUpDelivery
+        }
+
+        postData('production', data)
+
     }
     
     return (

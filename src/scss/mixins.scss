@@ -11,6 +11,9 @@
     .form-element-#{$number} {
         grid-column: 1;
         grid-row: #{$number};
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         text-align: left;
         padding-left: 10%;
         margin: 1%;
