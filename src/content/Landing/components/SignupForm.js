@@ -16,7 +16,8 @@ export const SignupForm = props => {
     const [password, setPassword] = useState('')
     const [verifyPassword, setVerifyPassword] = useState('')
 
-    const [address, setAddress] = useState('')
+    const [address1, setAddress1] = useState('')
+    const [address2, setAddress2] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [zipcode, setZipcode] = useState('')
@@ -75,7 +76,7 @@ export const SignupForm = props => {
         if(props.signupType === 'CUSTOMER' && numberOfEmployees === 0) {setNumberOfEmployeesError('Please indicate an estimated number of employees at the organization'); verified=false  }
         
         //if customer check no quantities === 10
-        if(maskRq == 10 || gownRq == 10 || faceShieldRq == 10) {setOrderQtyError('Please order a minimum of 20 product') }
+        if(maskRq == 10 || gownRq == 10 || faceShieldRq == 10) {setOrderQtyError('Please order a minimum of 20 product'); verified=false }
     
         return verified
     }
@@ -92,6 +93,13 @@ export const SignupForm = props => {
 
         //Set data based on user type
         let data
+        let makerProduction = props.products.map(product => {
+            return ({
+                product: product._id,
+                currentInventory: 0,
+                producedToDate: 0
+            })
+        })
 
         //VOLUNTEER ------------------
 
@@ -105,10 +113,11 @@ export const SignupForm = props => {
                 password,
                 phone,
                 maker : {
-                    address,
+                    address: address1 + ', ' + address2,
                     city,
                     state,
                     zipcode,
+                    makerProduction: makerProduction
                 },
                 other
             }
@@ -137,10 +146,11 @@ export const SignupForm = props => {
                 password,
                 phone, 
                 maker : {
-                    address,
+                    address: address1 + ', ' + address2,
                     city,
                     state,
                     zipcode,
+                    makerProduction: makerProduction
                 },
                 driver: { zipcode },
                 other
@@ -188,7 +198,7 @@ export const SignupForm = props => {
 
                 organization: {
                     name: orgName,
-                    address,
+                    address: address1 + ', ' + address2,
                     city,
                     state,
                     zipcode,
@@ -246,124 +256,135 @@ export const SignupForm = props => {
 
     let allUserInputs = (
         <div className="inputs-1">
-            {/* <div className="form-row"> */}
-                <label className="form-element-1">First Name
+
+                <label className="form-element-1">FIRST NAME* 
                     <input type="text" required value={firstName} onChange={e => setFirstName(e.currentTarget.value)} />
                 </label>
-                <label className="form-element-2">Last Name
+                <label className="form-element-2">LAST NAME 
                     <input type="text" value={lastName} onChange={e => setLastName(e.currentTarget.value)} />
                 </label>
-            {/* </div> */}
 
-            {/* <div className="form-row"> */}
-                <label className="form-element-3">Email
+
+
+                <label className="form-element-3">EMAIL* 
                         <input type="email" required value={email} onChange={e => setEmail(e.currentTarget.value)} />
                 </label> 
-            {/* </div> */}
 
-            {/* <div className="form-row"> */}
-                <label className="form-element-4">Password
+
+
+                <label className="form-element-4">PASSWORD* 
                     <input type="password" required value={password} onChange={e => setPassword(e.currentTarget.value)} />     
                 </label>
-            {/* </div> */}
 
-            <label className="form-element-5">Verify Password
+
+                <label className="form-element-5">VERIFY PASSWORD* 
                     <input type="password" required value={verifyPassword} onChange={e => {setVerifyPassword(e.currentTarget.value)}} />
                 </label>
 
-            {/* <div className="form-row"> */}
-                <div className="form-element-6">
-                    <small>{verifyPasswordError}</small>
-                    <small>{passwordError}</small>
-                </div>
-            {/* </div>
 
-            <div className="form-row"> */}
-                <label className="form-element-7">Display name
-                    <input type="text" required value={username} onChange={e => setUsername(e.currentTarget.value)}/>
+                <small className="form-element-6">{verifyPasswordError}</small>
+                <small className="form-element-7">{passwordError}</small>
+
+        
+                <label className="form-element-8">DISPLAY NAME 
+                    <input type="text" value={username} onChange={e => setUsername(e.currentTarget.value)}/>
                 </label>
-                {/* <small>This will be the name displayed to others with access to the site.</small> */}
-            {/* </div> */}
+
+                <p className="form-element-9 small-text">Your display name is what other users will see.</p>
 
             {/* set so that phone number field has dashes? */}
-            {/* <div className="form-row"> */}
-                <label className="form-element-8">Phone
-                    <input type="text" required value={phone} maxLength="10" onChange={e => setPhone(e.currentTarget.value)}/>
+        
+                <label className="form-element-10">CELL*
+                <input type="text" required value={phone} maxLength="10" onChange={e => setPhone(e.currentTarget.value)}/>
                 </label>
-                <small>{phoneError}</small>
-            {/* </div> */}
+
+                <small className="form-element-11">{phoneError}</small>
+
         </div>
     )
  
 
 
-    let header = 'Sign up here to request supplies for your clinic'
+    let header = 'MAKE A REQUEST FOR YOUR ORGANIZATION'
     let volunteerInputs = ''
     let volunteerDynamicInputs = ''
     let customerInputs = ''
     
 
     if(props.signupType === 'VOLUNTEER') {
-        header = 'Sign up here to volunteer'
+        header = 'VOLUNTEER'
         if(isMaker || (isMaker && isDriver)) {
             volunteerDynamicInputs = (
                 <div className="inputs-3-maker">
-                    <p className="form-element-1">We will need your address for matching you with a volunteer lead in your area, and for confirming pick ups with our drivers. We will never share this information with anyone else.</p>
-           
-                        <label className="form-element-2">Street Address
-                        <input type="text" required value={address} onChange={e => setAddress(e.currentTarget.value)} />
-                        </label>
+             
+                    <label className="form-element-1" >ADDRESS LINE 1
+                        <input type="text" value={address1} onChange={e => setAddress1(e.currentTarget.value)} /> 
+                    </label>  
+
             
-                  
-                        <label className="form-element-3">City
-                            <input type="text" required value={city} onChange={e => setCity(e.currentTarget.value)} />
-                        </label>
-                        <label className="form-element-4">State
-                            <input type="text" required value={state} maxLength="2" onChange={e => {setState(e.currentTarget.value.toUpperCase())}} />
-                        </label>
-                        <small className="form-element-5">{stateError}</small>
-       
-                        <label className="form-element-6">Zipcode
+                    <label className="form-element-2">ADDRESS LINE 2
+                        <input type="text" value={address2} onChange={e => setAddress2(e.currentTarget.value)} />
+                    </label>
+
+                    <label className="form-element-3">CITY
+                        <input type="text" value={city} onChange={e => setCity(e.currentTarget.value)} />
+                    </label>
+                    
+                    <label className="form-element-4">STATE
+                        <input type="text" value={state} maxLength="2" onChange={e => {setState(e.currentTarget.value.toUpperCase())}} />
+                    </label>
+
+                    <small className="form-element-5">{stateError}</small>
+
+    
+                    <label className="form-element-6">ZIPCODE*
                         <input type="text" required value={zipcode} maxLength="5" onChange={e => setZipcode(e.currentTarget.value)} />
-                        </label>
+                    </label>
+
                     <small className="form-element-7">{zipcodeError}</small>
+
+                    <p className="form-element-8 small-text">While not required, we use your address to match you with local delivery drivers. If left blank, we won't be able to offer pick-up. You can always change this in your settings.</p>
                 </div>
             )
         }
         if(isDriver && !isMaker) {
             volunteerDynamicInputs = (
                 <div className="inputs-3-driver">
-                    <p className="form-element-1">We will need your zipcode for matching you with a volunteer lead in your area.</p>
-
-                    <label className="form-element-2">Zipcode
+                    <label className="form-element-1">ZIPCODE*
                         <input type="text" required value={zipcode} maxLength="5" onChange={e => {setZipcode(e.currentTarget.value)}} />
                     </label>
-                    <small className="form-element-3">{zipcodeError}</small>
+                    <small className="form-element-2">{zipcodeError}</small>
+                    <p className="form-element-3 small-text">We will need your zipcode for matching you with volunteers and organizations in your area.</p>
                 </div>
             )
         }
 
         volunteerInputs = ( 
             <div className="inputs-2-volunteer">
-                <p className='form-element-1'>What would you like to volunteer for?</p>
-                <div className='form-element-2'>
-                    <input type='checkbox' name='isMaker' onChange={e => setIsMaker(e.target.checked)} />
-                    <label>Sew Masks, Make Face Shields, or Make Gowns </label>
+                <p className='form-element-1'>I WOULD LIKE TO: <span className="small-text">(choose all that apply)</span></p>
+                <div className='form-element-2 input-checkbox'>
+                    <label className="small-text">  
+                        <input type='checkbox' name='isMaker' onChange={e => {setIsMaker(e.target.checked)}} />
+                        Sew Masks/Make Face Shields/Make Gowns </label>
                 </div>
-                <div className='form-element-3'>
-                    <input type='checkbox' name='isDriver'  onChange={e => setIsDriver(e.target.checked)} />
-                    <label>Pick up and Deliver Materials</label>
+                <div className='form-element-3 input-checkbox'>
+                    <label className="small-text">
+                        <input type='checkbox' name='isDriver'  onChange={e => setIsDriver(e.target.checked)} />
+                        Pick up and Deliver Materials</label>
                 </div>
-                <div className='form-element-4'> 
-                    <input type='checkbox' name='isOther' onChange={e => setIsOther(e.target.checked)} />   
-                    <label>Other</label>
+                <div className='form-element-4 input-checkbox'> 
+                    <label className="small-text">
+                        <input type='checkbox' name='isOther' onChange={e => setIsOther(e.target.checked)} />   
+                        Other</label>
                 </div>
-                <div className='form-element-5'>
-                    <label>If you checked 'Other' please let us know how you would like to help: </label>
+                <div className='form-element-5 input-checkbox'>
+                    {/* <label className='small-text'>If you checked 'Other', please let us know how you would like to help: </label> */}
                     <input type='text' onChange={e => setOther(e.currentTarget.value)} />
                 </div>
 
                 <small>{volunteerChecksError}</small>
+
+                {volunteerDynamicInputs}
 
             </div>
         )
@@ -375,42 +396,46 @@ export const SignupForm = props => {
         customerInputs = (
             
             <div className="inputs-2-customer">
-                <label className="form-element-1">Organization Name
+                <label className="form-element-1">ORGANIZATION NAME*
                     <input type="text" required value={orgName} onChange={e=>setOrgName(e.currentTarget.value)}/>
                 </label>
                 
-                <label className="form-element-2">Street Address
-                    <input type="text" required value={address} onChange={e => setAddress(e.currentTarget.value)} />
+                <label className="form-element-2">ADDRESS LINE 1*
+                    <input type="text" required value={address1} onChange={e => setAddress1(e.currentTarget.value)} />
+                </label>
+
+                <label className="form-element-3">ADDRESS LINE 2
+                    <input type="text" value={address2} onChange={e => setAddress2(e.currentTarget.value)} />
                 </label>
                 
-                <label className="form-element-3">City 
+                <label className="form-element-4">CITY 
                     <input type="text" required value={city} onChange={e => setCity(e.currentTarget.value)} />
                 </label>
                 
-                <label className="form-element-4">State 
+                <label className="form-element-5">STATE 
                     <input type="text" required value={state} maxLength="2" onChange={e => setState(e.currentTarget.value.toUpperCase())} />
                 </label>
                 
-                <small className="form-element-5">{stateError}</small>
+                <small className="form-element-6">{stateError}</small>
                 
-                <label className="form-element-6">Zipcode
+                <label className="form-element-7">ZIPCODE*
                     <input type="text" required value={zipcode} maxLength="5" onChange={e => setZipcode(e.currentTarget.value)} />
                 </label>
                 
-                <small>{zipcodeError}</small>
+                <small className="form-element-8">{zipcodeError}</small>
                 
-                <label className="form-element-7">What is your affiliation to this organization?
+                <label className="form-element-9">WHAT IS YOUR AFFILIATION TO THIS ORGANIZATION?
                     <input type="text" required value={orgAffiliation} onChange={e => setOrgAffiliation(e.currentTarget.value)} />
                 </label>
                 
-                <label className="form-element-8">How many employees does your organization have?
+                <label className="form-element-10">HOW MANY EMPLOYEES ARE IN NEED OF MASKS?
                     <input type="number" value={numberOfEmployees} onChange={e => setNumberOfEmployees(e.currentTarget.value)}></input>
                 </label>
                 
-                <small className="form-element-9">{numberOfEmployeesError}</small>
+                <small className="form-element-11">{numberOfEmployeesError}</small>
 
-                <p className="form-element-10">Does your organization have laundry capabilities?</p>
-                <div className="form-element-11">
+                <p className="form-element-12">DOES THE ORGANIZATION HAVE LAUNDRY CAPABILITIES?</p>
+                <div className="form-element-13">
                     <label>
                         <input  type="radio" checked={laundryCapable === true} onChange={() => setLaundryCapable(true)} />
                     Yes</label>
@@ -420,21 +445,17 @@ export const SignupForm = props => {
                 </div>
 
          
-                <p className="form-element-12">Please indicate which products you would like to order with the quantity you are requesting. We are only accepting orders in increments of 10 and minimum orders of 20 right now. </p>
-                <label className="form-element-13">Masks
+                <p className="form-element-14">Please indicate which products you would like to order with the quantity you are requesting. <span className="small-text">We are only accepting orders in increments of 10 and minimum orders of 20 right now.</span></p>
+                <label className="form-element-15">Masks
                     <input type="number" value={maskRq} step={10} onChange={e => setMaskRq(e.currentTarget.value) } />
                 </label>
-                <label className="form-element-14">Gowns
+                <label className="form-element-16">Gowns
                     <input type="number" value={gownRq} step={10} onChange={e => setGownRq(e.currentTarget.value) } />
                 </label>
-                <label className="form-element-15">Face Shields
+                <label className="form-element-17">Face Shields
                     <input type="number" value={faceShieldRq} step={10} onChange={e => setFaceShieldRq(e.currentTarget.value)} />
                 </label>
-                <small className="form-element-16">{orderQtyError}</small>
-    
-                <div className="form-col">
-                    
-                </div>
+                <small className="form-element-18">{orderQtyError}</small>
 
 
             </div>
@@ -442,16 +463,16 @@ export const SignupForm = props => {
     }
 
     return(
-        <form className='modal__form' onSubmit={handleSubmit}>
-            <p>{header}</p>
-            {allUserInputs}
-            {volunteerInputs}
-            {volunteerDynamicInputs}
-            {customerInputs}
-            
+        <>
+            <p className='body-two'>{header}</p>
+            <form className='modal__form' onSubmit={handleSubmit}>
+                {allUserInputs}
+                {volunteerInputs}
+                {customerInputs}
+            </form>
             <input type="submit" value="Sign Up"/>
             <small>{errorMessage}</small>
-
-        </form>
+            <p className="small-text">Required*</p>
+        </>
     )
 }

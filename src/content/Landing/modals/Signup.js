@@ -32,12 +32,13 @@ export const Signup = props => {
             <div className='modal'>
                 <div className='close-x' onClick={() => props.closeModal()}>X</div>
                 <div className='modal__content'>
-                    <p className='body-one modal__header'>Sign Up</p>
+                    <p className='body-one modal__header'>SIGN UP TO</p>
                     {callToActionButtons}
                     <SignupForm 
                         closeModal={props.closeModal}
                         signupType={props.signupType} 
-                        updateUser={props.updateUser} 
+                        updateUser={props.updateUser}
+                        products={props.products}
                     />
                 </div>
                 

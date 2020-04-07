@@ -1,7 +1,7 @@
 // dependencies
 import React, { useState, useEffect } from 'react';
 // components
-import { ListItem } from './components';
+import { ListItem, OrgNeed, MakeImpact } from './components';
 
 export const Volunteer = props => {
     
@@ -9,8 +9,8 @@ export const Volunteer = props => {
     const [userInfo, setUserInfo] = useState(['Inventory','Info','Team Lead','Orders']);
     const [activeTab, setActiveTab] = useState(userInfo[0]);
     const [inventory, setInventory] = useState([])
+    const [showModal, setShowModal] = useState(false)
 
-   
     //on render, populate state needs
     //1) user type
     useEffect(() => {
@@ -37,8 +37,8 @@ export const Volunteer = props => {
                 return(
                     {
                     product: productName,
-                    currentInventory: product.currentInventory,
-                    producedToDate: product.producedToDate
+                    currentInventory: product.currentInventory || product.inventory,
+                    producedToDate: product.producedToDate || null
                 }
                 )
             })
@@ -50,9 +50,6 @@ export const Volunteer = props => {
         let product = props.products.filter(product => product._id === prodId)
         return product[0].name
     }
-
-    console.log('user', props.user)
-
 
     const handleTabSelect = e => {
         setActiveTab(e.target.getAttribute('name'));
@@ -84,11 +81,11 @@ export const Volunteer = props => {
             listItems = <ListItem text={props.user.firstName + ' ' + props.user.lastName} data={props.user} user={props.user} getProductName={getProductName} />
         }
         else if(activeTab === 'Team Lead') {
-            listItems = <ListItem text={teamLead ? teamLead.firstName + ' ' +  teamLead.lastName : 'You have not been assigned a team lead yet.'} data={teamLead} user={props.user} getProductName={getProductName}/>
+            listItems = <ListItem text={teamLead ? teamLead.firstName + ' ' +  teamLead.lastName : 'You have not been assigned a team lead yet.'} data={teamLead || 'no data'} user={props.user} getProductName={getProductName}/>
         }
         else if(activeTab === 'Orders') {
             if(!props.user.orders) {
-                listItems = <ListItem text={'You have not been assigned to any orders yet'} data={null} user={props.user} getProductName={getProductName} />
+                listItems = <ListItem text='You have not been assigned to any orders yet' data={'no data'} user={props.user} getProductName={getProductName} />
             }
             listItems = props.user.orders.map((order, i) => {
                 return <ListItem text={`Order: ${order.orderNumber}`} data={order} user={props.user} getProductName={getProductName}/>
@@ -99,13 +96,20 @@ export const Volunteer = props => {
 
     return (
         <div className='dashboard'>
-            <div className='dashboard__tabs'>
-                {tabs}
+            
+            <OrgNeed />
+
+            <MakeImpact products={props.products} user={props.user} updateUser={props.updateUser} showModal={showModal} setShowModal={setShowModal} />
+
+            <div className='dashboard__tabs_content'>
+                <div className='dashboard__tabs'>
+                    {tabs}
+                </div>
+                <div className='dashboard__content'>
+                    {listItems}
+                </div>
             </div>
-            <div className='dashboard__content'>
-                {/* LIST ITEMS HERE */}
-                {listItems}
-            </div>
+
         </div>
     )
 };
