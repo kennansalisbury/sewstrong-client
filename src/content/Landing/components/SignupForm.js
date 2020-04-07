@@ -174,9 +174,13 @@ export const SignupForm = props => {
         if(props.signupType === 'CUSTOMER') {
 
             //set productOrderDetails to only products with quantities over 0
-            let maskOrderDetails = (maskRq > 0 ? [{product: "5e84d319e7424247d2926b36", orgRequestQty: maskRq}] : [])
-            let gownOrderDetails = (gownRq > 0 ? [{product: "5e84d319e7424247d2926b37", orgRequestQty: gownRq}]: [])
-            let faceShieldOrderDetails = ( faceShieldRq > 0 ? [{product: "5e84d319e7424247d2926b38", orgRequestQty: faceShieldRq}] : [])
+            let mask = props.products.filter(product => product.name.toLowerCase() == 'mask')
+            let gown = props.products.filter(product => product.name.toLowerCase() == 'gown')
+            let faceShield = props.products.filter(product => product.name.toLowerCase() == 'face shield')
+
+            let maskOrderDetails = (maskRq > 0 ? [{product: mask[0]._id, orgRequestQty: maskRq}] : [])
+            let gownOrderDetails = (gownRq > 0 ? [{product: gown[0]._id, orgRequestQty: gownRq}]: [])
+            let faceShieldOrderDetails = ( faceShieldRq > 0 ? [{product: faceShield[0]._id, orgRequestQty: faceShieldRq}] : [])
 
             
             let productOrderDetails = [...maskOrderDetails, ...gownOrderDetails, ...faceShieldOrderDetails]
