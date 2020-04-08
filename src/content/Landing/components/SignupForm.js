@@ -93,12 +93,20 @@ export const SignupForm = props => {
 
         //Set data based on user type
         let data
+        let userType
 
         //VOLUNTEER ------------------
 
         //maker
         if(isMaker && !isDriver) {
+            userType = 'maker'
             data = {
+                // user: {
+
+                // },
+                // maker: {
+                    
+                // },
                 firstName,
                 lastName,
                 email,
@@ -117,6 +125,7 @@ export const SignupForm = props => {
         }
         //driver
         if(isDriver && !isMaker) {
+            userType = 'driver'
             data = {
                 firstName,
                 lastName,
@@ -131,6 +140,7 @@ export const SignupForm = props => {
 
         //driver & maker
         if(isDriver && isMaker) {
+            userType = 'maker+driver'
             data = {
                 firstName,
                 lastName,
@@ -152,6 +162,7 @@ export const SignupForm = props => {
 
         //other only
         if(isOther && !isDriver && !isMaker) {
+            userType = 'other'
             data = {
                 firstName,
                 lastName,
@@ -217,7 +228,9 @@ export const SignupForm = props => {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                //header for determining what type of user account to create
+                'User-Type': `${userType}`
             }
         })
         .then(response => {
