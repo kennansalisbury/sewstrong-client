@@ -93,13 +93,6 @@ export const SignupForm = props => {
 
         //Set data based on user type
         let data
-        let makerProduction = props.products.map(product => {
-            return ({
-                product: product._id,
-                currentInventory: 0,
-                producedToDate: 0
-            })
-        })
 
         //VOLUNTEER ------------------
 
@@ -117,7 +110,7 @@ export const SignupForm = props => {
                     city,
                     state,
                     zipcode,
-                    makerProduction: makerProduction
+                    makerProduction: []
                 },
                 other
             }
@@ -150,7 +143,7 @@ export const SignupForm = props => {
                     city,
                     state,
                     zipcode,
-                    makerProduction: makerProduction
+                    makerProduction: []
                 },
                 driver: { zipcode },
                 other
@@ -213,9 +206,6 @@ export const SignupForm = props => {
             }
 
         }
-
-        console.log('AND THE DATA ISSSSS', data)
-     
         //set post url based on sign up type
         let postUrl
         props.signupType === 'VOLUNTEER' ? postUrl = '/auth/signup/volunteer' : postUrl = '/auth/signup/order'

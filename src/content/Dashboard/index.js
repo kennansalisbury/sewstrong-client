@@ -1,5 +1,5 @@
 // dependencies
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
 // pages
 import { Volunteer } from './Volunteer';
@@ -8,7 +8,7 @@ import { Header } from '../Partials';
 // styles
 import './style.scss';
 
-export const Dashboard = props => {
+export const Dashboard = props => {    
 
     if (!props.user) {
         return <Redirect to='/' />
