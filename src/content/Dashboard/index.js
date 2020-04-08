@@ -11,9 +11,13 @@ import './style.scss';
 
 export const Dashboard = props => {    
 
-    // if (!props.user) {
-    //     return <Redirect to='/' />
-    // }
+    //state for passing to components
+        //userType, setUserType
+        //showModal, setShowModal
+
+    if (!props.user) {
+        return <Redirect to='/' />
+    }
 
     if(props.user.customer) {
         return (
@@ -44,6 +48,9 @@ export const Dashboard = props => {
             )
     }
 
+    if(props.user.adminPermissions) {
+
+  
     return (
         <>
             <Header user={props.user} updateUser={props.updateUser}/>
@@ -53,4 +60,7 @@ export const Dashboard = props => {
             <Admin />
         </>
     )
+    }
+
+    return null
 }

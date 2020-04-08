@@ -245,27 +245,27 @@ export const SignupForm = props => {
     let allUserInputs = (
         <div className="all-user-inputs">
 
-                <label className="form-element-1">FIRST NAME* 
+                <label className="body-two form-element-1">FIRST NAME* 
                     <input type="text" required value={firstName} onChange={e => setFirstName(e.currentTarget.value)} />
                 </label>
-                <label className="form-element-2">LAST NAME 
+                <label className="body-two form-element-2">LAST NAME 
                     <input type="text" value={lastName} onChange={e => setLastName(e.currentTarget.value)} />
                 </label>
 
 
 
-                <label className="form-element-3">EMAIL* 
+                <label className="body-two form-element-3">EMAIL* 
                         <input type="email" required value={email} onChange={e => setEmail(e.currentTarget.value)} />
                 </label> 
 
 
 
-                <label className="form-element-4">PASSWORD* 
+                <label className="body-two form-element-4">PASSWORD* 
                     <input type="password" required value={password} onChange={e => setPassword(e.currentTarget.value)} />     
                 </label>
 
 
-                <label className="form-element-5">VERIFY PASSWORD* 
+                <label className="body-two form-element-5">VERIFY PASSWORD* 
                     <input type="password" required value={verifyPassword} onChange={e => {setVerifyPassword(e.currentTarget.value)}} />
                 </label>
 
@@ -274,7 +274,7 @@ export const SignupForm = props => {
                 <small className="form-element-7">{passwordError}</small>
 
         
-                <label className="form-element-8">DISPLAY NAME 
+                <label className="body-two form-element-8">DISPLAY NAME 
                     <input type="text" value={username} onChange={e => setUsername(e.currentTarget.value)}/>
                 </label>
 
@@ -282,7 +282,7 @@ export const SignupForm = props => {
 
             {/* set so that phone number field has dashes? */}
         
-                <label className="form-element-10">CELL*
+                <label className="body-two form-element-10">CELL*
                 <input type="text" required value={phone} maxLength="10" onChange={e => setPhone(e.currentTarget.value)}/>
                 </label>
 
@@ -305,27 +305,27 @@ export const SignupForm = props => {
             volunteerDynamicInputs = (
                 <div className="volunteer-inputs__2-maker">
              
-                    <label className="form-element-1" >ADDRESS LINE 1
+                    <label className="body-two form-element-1" >ADDRESS LINE 1
                         <input type="text" value={address1} onChange={e => setAddress1(e.currentTarget.value)} /> 
                     </label>  
 
             
-                    <label className="form-element-2">ADDRESS LINE 2
+                    <label className="body-two form-element-2">ADDRESS LINE 2
                         <input type="text" value={address2} onChange={e => setAddress2(e.currentTarget.value)} />
                     </label>
 
-                    <label className="form-element-3">CITY
+                    <label className="body-two form-element-3">CITY
                         <input type="text" value={city} onChange={e => setCity(e.currentTarget.value)} />
                     </label>
                     
-                    <label className="form-element-4">STATE
+                    <label className="body-two form-element-4">STATE
                         <input type="text" value={state} maxLength="2" onChange={e => {setState(e.currentTarget.value.toUpperCase())}} />
                     </label>
 
                     <small className="form-element-5">{stateError}</small>
 
     
-                    <label className="form-element-6">ZIPCODE*
+                    <label className="body-two form-element-6">ZIPCODE*
                         <input type="text" required value={zipcode} maxLength="5" onChange={e => setZipcode(e.currentTarget.value)} />
                     </label>
 
@@ -338,7 +338,7 @@ export const SignupForm = props => {
         if(isDriver && !isMaker) {
             volunteerDynamicInputs = (
                 <div className="volunteer-inputs__2-driver">
-                    <label className="form-element-1">ZIPCODE*
+                    <label className="body-two form-element-1">ZIPCODE*
                         <input type="text" required value={zipcode} maxLength="5" onChange={e => {setZipcode(e.currentTarget.value)}} />
                     </label>
                     <small className="form-element-2">{zipcodeError}</small>
@@ -349,19 +349,19 @@ export const SignupForm = props => {
 
         volunteerInputs = ( 
             <div className="volunteer-inputs__all">
-                <p className='form-element-1'>I WOULD LIKE TO: <span className="small-text">(choose all that apply)</span></p>
+                <p className='body-two form-element-1'>I WOULD LIKE TO: <span className="small-text">(choose all that apply)</span></p>
                 <div className='form-element-2 input-checkbox'>
-                    <label className="small-text">  
+                    <label className="body-three">  
                         <input type='checkbox' name='isMaker' onChange={e => {setIsMaker(e.target.checked)}} />
                         Sew Masks/Make Face Shields/Make Gowns </label>
                 </div>
                 <div className='form-element-3 input-checkbox'>
-                    <label className="small-text">
+                    <label className="body-three">
                         <input type='checkbox' name='isDriver'  onChange={e => setIsDriver(e.target.checked)} />
                         Pick up and Deliver Materials</label>
                 </div>
                 <div className='form-element-4 input-checkbox'> 
-                    <label className="small-text">
+                    <label className="body-three">
                         <input type='checkbox' name='isOther' onChange={e => setIsOther(e.target.checked)} />   
                         Other</label>
                 </div>
@@ -384,63 +384,63 @@ export const SignupForm = props => {
         customerInputs = (
             
             <div className="inputs-2-customer">
-                <label className="form-element-1">ORGANIZATION NAME*
+                <label className="body-two form-element-1">ORGANIZATION NAME*
                     <input type="text" required value={orgName} onChange={e=>setOrgName(e.currentTarget.value)}/>
                 </label>
                 
-                <label className="form-element-2">ADDRESS LINE 1*
+                <label className="body-two form-element-2">ADDRESS LINE 1*
                     <input type="text" required value={address1} onChange={e => setAddress1(e.currentTarget.value)} />
                 </label>
 
-                <label className="form-element-3">ADDRESS LINE 2
+                <label className="body-two form-element-3">ADDRESS LINE 2
                     <input type="text" value={address2} onChange={e => setAddress2(e.currentTarget.value)} />
                 </label>
                 
-                <label className="form-element-4">CITY 
+                <label className="body-two form-element-4">CITY 
                     <input type="text" required value={city} onChange={e => setCity(e.currentTarget.value)} />
                 </label>
                 
-                <label className="form-element-5">STATE 
+                <label className="body-two form-element-5">STATE 
                     <input type="text" required value={state} maxLength="2" onChange={e => setState(e.currentTarget.value.toUpperCase())} />
                 </label>
                 
                 <small className="form-element-6">{stateError}</small>
                 
-                <label className="form-element-7">ZIPCODE*
+                <label className="body-two form-element-7">ZIPCODE*
                     <input type="text" required value={zipcode} maxLength="5" onChange={e => setZipcode(e.currentTarget.value)} />
                 </label>
                 
                 <small className="form-element-8">{zipcodeError}</small>
                 
-                <label className="form-element-9">WHAT IS YOUR AFFILIATION TO THIS ORGANIZATION?
+                <label className="body-two form-element-9">WHAT IS YOUR AFFILIATION TO THIS ORGANIZATION?
                     <input type="text" required value={orgAffiliation} onChange={e => setOrgAffiliation(e.currentTarget.value)} />
                 </label>
                 
-                <label className="form-element-10">HOW MANY EMPLOYEES ARE IN NEED OF MASKS?
+                <label className="body-two form-element-10">HOW MANY EMPLOYEES ARE IN NEED OF MASKS?
                     <input type="number" value={numberOfEmployees} onChange={e => setNumberOfEmployees(e.currentTarget.value)}></input>
                 </label>
                 
                 <small className="form-element-11">{numberOfEmployeesError}</small>
 
-                <p className="form-element-12">DOES THE ORGANIZATION HAVE LAUNDRY CAPABILITIES?</p>
+                <p className="body-two form-element-12">DOES THE ORGANIZATION HAVE LAUNDRY CAPABILITIES?</p>
                 <div className="form-element-13">
-                    <label>
+                    <label className="body-two">
                         <input  type="radio" checked={laundryCapable === true} onChange={() => setLaundryCapable(true)} />
                     Yes</label>
-                    <label>
+                    <label className="body-two">
                         <input type="radio" checked={laundryCapable === false} onChange={() => setLaundryCapable(false)} />
                     No</label>
                 </div>
 
          
-                <p className="form-element-14">Please indicate which products you would like to order with the quantity you are requesting. <span className="small-text">We are only accepting orders in increments of 10 and minimum orders of 20 right now.</span></p>
-                <label className="form-element-15">Masks
+                <p className="body-two form-element-14">Please indicate which products you would like to order with the quantity you are requesting. <span className="small-text">We are only accepting orders in increments of 10 and minimum orders of 20 right now.</span></p>
+                <label className="body-two form-element-15">Masks
                     <input type="number" value={maskRq} step={10} onChange={e => setMaskRq(e.currentTarget.value) } />
                 </label>
-                <label className="form-element-16">Gowns
+                <label className="body-two form-element-16">Gowns
                     <input type="number" value={gownRq} step={10} onChange={e => setGownRq(e.currentTarget.value) } />
                 </label>
-                <label className="form-element-17">Face Shields
+                <label className="body-two form-element-17">Face Shields
                     <input type="number" value={faceShieldRq} step={10} onChange={e => setFaceShieldRq(e.currentTarget.value)} />
                 </label>
                 <small className="form-element-18">{orderQtyError}</small>
@@ -454,7 +454,6 @@ export const SignupForm = props => {
         <>
             <p className='body-two'>{header}</p>
             <form className='modal__form' onSubmit={handleSubmit}>
-            
                 {allUserInputs}
                 {volunteerInputs}
                 {customerInputs}
