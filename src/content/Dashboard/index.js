@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
 // pages
+import { Admin } from './Admin';
 import { Volunteer } from './Volunteer';
 // partials
 import { Header } from '../Partials';
@@ -10,9 +11,9 @@ import './style.scss';
 
 export const Dashboard = props => {    
 
-    if (!props.user) {
-        return <Redirect to='/' />
-    }
+    // if (!props.user) {
+    //     return <Redirect to='/' />
+    // }
 
     if(props.user.customer) {
         return (
@@ -47,7 +48,9 @@ export const Dashboard = props => {
         <>
             <Header user={props.user} updateUser={props.updateUser}/>
         
-            <Volunteer user={props.user} updateUser={props.updateUser} products={props.products} />
+            {/* <Volunteer user={props.user} updateUser={props.updateUser} products={props.products} /> */}
+
+            <Admin />
         </>
     )
 }
