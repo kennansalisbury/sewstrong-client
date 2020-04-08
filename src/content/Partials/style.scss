@@ -70,3 +70,15 @@
         width: 8vw;
     }
 }
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: $brand-green;
+    margin-top: 5%;
+    & a {
+        color: black;
+    }
+}

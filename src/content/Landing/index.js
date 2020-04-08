@@ -1,6 +1,6 @@
 // dependencies
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
 // components
 import { CallToAction, InfoSmall, InfoLarge } from './components';
 // modals
@@ -41,10 +41,10 @@ export const Landing = props => {
                 />
             <div className='landing__banner__message'>
                 <p className='heading-one'>
-                    Medical professionals are in need of masks and other equipment
+                    Coronavirus health care workers are without masks and protective equipment
                 </p>
                 <p className='body-two'>
-                    Help fight the COVID-19 and protect healthcare workers by making or delivering supplies for your community clinics
+                    Help fight the spread and protect our front lines by making or delivering free access supplies
                 </p>
             </div>
             </div>
@@ -63,6 +63,9 @@ export const Landing = props => {
                 updateUser={props.updateUser}
             />
             <div className='landing__main'>
+                <p id="volunteer" className='heading-two'>
+                    Connect to protect
+                </p>
                 <div className='landing__main__box'>
                     <InfoLarge 
                         text='Create' 
@@ -84,7 +87,8 @@ export const Landing = props => {
                     signupType={signupType}
                     text='VOLUNTEER'
                 />
-                <p className='heading-two'>
+       
+                <p id="order" className='heading-two'>
                     Are you a health professional in need?
                 </p>
                 <div className='landing__main__box'>
@@ -98,6 +102,18 @@ export const Landing = props => {
                     setSignupType={setSignupType}
                     signupType={signupType}
                     text='REQUEST SUPPLIES'
+                />
+
+                <p id="resources" className='heading-two'>
+                    Resources
+                </p>
+                
+                <CallToAction 
+                    backgroundcolor={'background-orange'}
+                    setShowSignup={setShowSignup}
+                    setSignupType={setSignupType}
+                    signupType={signupType}
+                    text='DOWNLOAD'
                 />
             </div>
         </div>

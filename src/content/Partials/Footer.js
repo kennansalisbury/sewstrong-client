@@ -2,5 +2,9 @@
 import React from 'react';
 
 export const Footer = () => (
-    <div className=''></div>
+    <div id="contact" className='footer'>
+        <h1 className="body-one">Contact Us</h1>
+        <p className="body-two">Email: <a href="mailto:info@sewstrong.org"> info@sewstrong.org</a></p>
+        <p>[PLACEHOLDER FOR SOCIAL MEDIA ICONS]</p>
+    </div>
 );
