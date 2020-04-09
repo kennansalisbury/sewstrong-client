@@ -16,7 +16,7 @@ export const AdminDash = props => {
             className += ' dashboard__admin__tab__active'
         }
         return (
-            <p className={className} key={tab} name={tab} onClick={handleTabToggle}>
+            <p className={`body-two ${className}`} key={tab} name={tab} onClick={handleTabToggle}>
                 {tab}
             </p>
         )

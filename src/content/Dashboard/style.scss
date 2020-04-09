@@ -1,3 +1,4 @@
+@import '../../scss/palette.scss';
 .dashboard {
     margin: 0 auto;
     height: 80vh;
@@ -13,7 +14,7 @@
         justify-content: center;
         &__content {
             height: 70vh;
-            border: 1px solid black;
+            border: 3px solid $brand-green;
             border-radius: 25px;
             border-top-left-radius: 1px;
             overflow: scroll;
@@ -22,7 +23,7 @@
             margin: .3em;
             height: 10vh;
             width: 98%;
-            border: 1px solid black;
+            border: 2px solid $brand-green;
         };
         &__tab {
             padding: 7.2px;
@@ -30,7 +31,7 @@
             cursor: pointer;
             &__active {
                 color: white;
-                background-color: red;
+                background-color: $brand-green;
                 border-top-left-radius: 5px;
                 border-top-right-radius: 15px;
             }
@@ -47,7 +48,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid black;
+    border: 3px solid $brand-green;
     border-radius: 25px;
     &__content {
         height: 50vh;
@@ -69,14 +70,14 @@
     &__item {
         height: 20%;
         width: 99%;
-        border: 1px solid black;
+        border: 1px solid $brand-green;
     }
     &__tab {
         display: inline-block;
         padding: 7.2px;
         cursor: pointer;
         &__active {
-            background-color: red;
+            background-color: $brand-green;
             color: white;
         }
     }
