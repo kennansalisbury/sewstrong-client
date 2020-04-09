@@ -19,6 +19,16 @@ export const Dashboard = props => {
         return <Redirect to='/' />
     }
 
+    if(props.user.maker) {
+    //    return <Volunteer user={props.user} updateUser={props.updateUser} products={props.products} />
+    return (
+        <>
+            <Header user={props.user} updateUser={props.updateUser}/>
+            <h1>Maker Dashboard Stub</h1>
+        </>
+        )
+    }
+
     if(props.user.customer) {
         return (
         <>
@@ -54,8 +64,6 @@ export const Dashboard = props => {
     return (
         <>
             <Header user={props.user} updateUser={props.updateUser}/>
-        
-            {/* <Volunteer user={props.user} updateUser={props.updateUser} products={props.products} /> */}
 
             <Admin />
         </>
