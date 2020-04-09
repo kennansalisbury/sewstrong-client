@@ -2,11 +2,18 @@ import React from 'react';
 
 export const AdminDashItem = props => {
 
+    let style = {backgroundColor: props.status}
+
     return (
-        <div className='body-two dashboard__admin__item' key={props.key}>
-            {props.name}<br/>
-            {props.zipcode}<br />
-            {props.roles}
+        <div className={`body-two dashboard__admin__item ${props.className}`} key={props.key}>
+            <div className='body-three'>
+                {props.orderNo}<br />
+                {props.item}<br />
+                {props.total}<br />
+            </div>
+            <div className='body-three'>
+                <div className='dashboard__admin__item__status' style={style}></div>
+            </div>
         </div>
     )
 };
