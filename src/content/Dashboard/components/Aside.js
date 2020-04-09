@@ -1,0 +1,38 @@
+import React, { useState } from 'react';
+
+export const Aside = props => {
+
+    const [activeTab, setActiveTab] = useState('Something');
+    const [asideTabs, setAsideTabs] = useState(['Something','Else']);
+
+    const handleTabToggle = e => {
+        setActiveTab(e.target.getAttribute('name'));
+    };
+
+    let tabs = asideTabs.map(tab => {
+        let className='aside__tab';
+        if (tab === activeTab) {
+            className += ' aside__tab__active'
+        };
+        return (
+            <p className={className} key={tab} name={tab} onClick={handleTabToggle}>
+                {tab}
+            </p>
+        )
+    });
+
+    return (
+        <div className='aside'>
+            <div className='aside__header'>
+                <p>Snapshot</p>
+                <div className='aside__header__tabs'>
+                    {tabs}
+                </div>
+            </div>
+            <div className='aside__content'>
+
+            </div>
+            <div className='aside__footer'></div>
+        </div>
+    )
+}

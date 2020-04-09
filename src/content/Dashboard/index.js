@@ -1,74 +1,18 @@
-// dependencies
-import React, {useState, useEffect} from 'react';
-import { Redirect } from 'react-router-dom';
-// pages
-import { Admin } from './Admin';
-import { Volunteer } from './Volunteer';
-// partials
-import { Header } from '../Partials';
-// styles
+import React, { useState } from 'react';
+
+import { AdminDash, Aside } from './components';
+
 import './style.scss';
 
-export const Dashboard = props => {    
+export const Dashboard = props => {
 
-    //state for passing to components
-        //userType, setUserType
-        //showModal, setShowModal
+    const [userType, setUserType] = 'Admin';
 
-    if (!props.user) {
-        return <Redirect to='/' />
-    }
-
-    if(props.user.maker) {
-    //    return <Volunteer user={props.user} updateUser={props.updateUser} products={props.products} />
     return (
-        <>
-            <Header user={props.user} updateUser={props.updateUser}/>
-            <h1>Maker Dashboard Stub</h1>
-        </>
-        )
-    }
-
-    if(props.user.customer) {
-        return (
-        <>
-            <Header user={props.user} updateUser={props.updateUser}/>
-            <h1>Customer Dashboard Stub</h1>
-        </>
-        )
-    
-    }
-
-    if(props.user.driver) {
-        return (
-        <>
-            <Header user={props.user} updateUser={props.updateUser}/>
-            <h1>Driver Dashboard Stub</h1>
-        </>
-        )
-        
-    }
-
-    if(props.user.other) {
-        return (
-            <>
-                <Header user={props.user} updateUser={props.updateUser}/>
-                <h1>Other Stub</h1>
-            </>
-            )
-    }
-
-    if(props.user.adminPermissions) {
-
-  
-    return (
-        <>
-            <Header user={props.user} updateUser={props.updateUser}/>
-
-            <Admin />
-        </>
+        <div className='page'>
+            <div className='dashboard'>
+                
+            </div>
+        </div>
     )
-    }
-
-    return null
-}
+};
