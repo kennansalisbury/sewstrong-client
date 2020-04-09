@@ -6,7 +6,7 @@ import { CallToAction, InfoSmall, InfoLarge } from './components';
 // modals
 import { Login, Signup } from './modals';
 // partials
-import { Header } from '../Partials';
+import { Header, Footer } from '../Partials';
 // styles
 import './style.scss';
 
@@ -30,24 +30,15 @@ export const Landing = props => {
         return <Redirect to="/dashboard"/>
     }
 
+    let overlayClass = ''
+    if(showLogin || showSignup) {
+        overlayClass='overlay'
+    }
+
     return (
+        
         <div className='landing'>
-            <div className='landing__banner'>
-                <Header 
-                    setShowLogin={setShowLogin}
-                    setShowSignup={setShowSignup}
-                    user={props.user}
-                    updateUser={props.updateUser}
-                />
-            <div className='landing__banner__message'>
-                <p className='heading-one'>
-                    Coronavirus health care workers are without masks and protective equipment
-                </p>
-                <p className='body-two'>
-                    Help fight the spread and protect our front lines by making or delivering free access supplies
-                </p>
-            </div>
-            </div>
+            {/* <div className={`${overlayClass}`} > */}
             <Signup 
                     closeModal={closeModal}
                     setShowSignup={setShowSignup}
@@ -57,11 +48,27 @@ export const Landing = props => {
                     updateUser={props.updateUser}
                     products={props.products}
                 />
-            <Login 
-                closeModal={closeModal}
-                showLogin={showLogin}
-                updateUser={props.updateUser}
-            />
+                <Login 
+                    closeModal={closeModal}
+                    showLogin={showLogin}
+                    updateUser={props.updateUser}
+                />
+            <div className='landing__banner'>
+                <Header 
+                    setShowLogin={setShowLogin}
+                    setShowSignup={setShowSignup}
+                    user={props.user}
+                    updateUser={props.updateUser}
+                />
+                <div className='landing__banner__message'>
+                    <p className='heading-one'>
+                        Coronavirus health care workers are without masks and protective equipment
+                    </p>
+                    <p className='body-two'>
+                        Help fight the spread and protect our front lines by making or delivering free access supplies
+                    </p>
+                </div>
+            </div>
             <div className='landing__main'>
                 <p id="volunteer" className='heading-two'>
                     Connect to protect
@@ -116,6 +123,8 @@ export const Landing = props => {
                     text='DOWNLOAD'
                 />
             </div>
+            {/* </div> */}
+            {/* <Footer /> */}
         </div>
     )
 };

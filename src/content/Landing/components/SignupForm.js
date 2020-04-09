@@ -244,6 +244,7 @@ export const SignupForm = props => {
 
     let allUserInputs = (
         <div className="all-user-inputs">
+                {/* <p className="body-three">&larr; BACK</p> */}
 
                 <label className="body-two form-element">FIRST NAME* 
                     <input type="text" required value={firstName} onChange={e => setFirstName(e.currentTarget.value)} />
@@ -302,8 +303,10 @@ export const SignupForm = props => {
         if(isMaker || (isMaker && isDriver)) {
             volunteerDynamicInputs = (
                 <div className="volunteer-inputs__2-maker">
+                    <p className="form-element small-text">Please provide your address so we have on file for pick ups. </p>
+
                     <label className="body-two form-element" >ADDRESS LINE 1
-                        <input type="text" value={address1} onChange={e => setAddress1(e.currentTarget.value)} /> 
+                        <input required type="text" value={address1} onChange={e => setAddress1(e.currentTarget.value)} /> 
                     </label>  
 
             
@@ -312,16 +315,15 @@ export const SignupForm = props => {
                     </label>
 
                     <label className="body-two form-element">CITY
-                        <input type="text" value={city} onChange={e => setCity(e.currentTarget.value)} />
+                        <input required type="text" value={city} onChange={e => setCity(e.currentTarget.value)} />
                     </label>
                     
                     <label className="body-two form-element">STATE
-                        <input type="text" value={state} maxLength="2" onChange={e => {setState(e.currentTarget.value.toUpperCase())}} />
+                        <input required type="text" value={state} maxLength="2" onChange={e => {setState(e.currentTarget.value.toUpperCase())}} />
                     </label>
 
                     <small className="form-element">{stateError}</small>
 
-                    <p className="form-element small-text">While not required, we use your address to match you with local delivery drivers. If left blank, we won't be able to offer pick-up.</p>
                 </div>
             
             )
@@ -331,7 +333,8 @@ export const SignupForm = props => {
           
             <div className="volunteer-inputs">
                 <div className="volunteer-inputs__1-all">
-                <div className='body-two form-element'>I WOULD LIKE TO: <p className="small-text">(choose all that apply)</p></div>
+                {/* <br/> */}
+                <div className='body-two form-element'>I WOULD LIKE TO*: <p className="small-text">(choose all that apply)</p></div>
                 
 
                 <div className='form-element input-checkbox'>
@@ -364,63 +367,62 @@ export const SignupForm = props => {
     else if(props.signupType === 'CUSTOMER') {
         
         customerInputs = (
-            
-            <div className="inputs-2-customer">
+            <>
+            <div className="customer-inputs__1">
             
                 
-                <label className="body-two form-element-1">ORGANIZATION NAME*
+                <label className="body-two form-element">ORGANIZATION NAME*
                     <input type="text" required value={orgName} onChange={e=>setOrgName(e.currentTarget.value)}/>
                 </label>
                 
-                <label className="body-two form-element-2">ADDRESS LINE 1*
+                <label className="body-two form-element">ADDRESS LINE 1*
                     <input type="text" required value={address1} onChange={e => setAddress1(e.currentTarget.value)} />
                 </label>
 
-                <label className="body-two form-element-3">ADDRESS LINE 2
+                <label className="body-two form-element">ADDRESS LINE 2
                     <input type="text" value={address2} onChange={e => setAddress2(e.currentTarget.value)} />
                 </label>
                 
-                <label className="body-two form-element-4">CITY*
+                <label className="body-two form-element">CITY*
                     <input type="text" required value={city} onChange={e => setCity(e.currentTarget.value)} />
                 </label>
                 
-                <label className="body-two form-element-5">STATE* 
+                <label className="body-two form-element">STATE* 
                     <input type="text" required value={state} maxLength="2" onChange={e => setState(e.currentTarget.value.toUpperCase())} />
                 </label>
                 
-                <small className="form-element-6">{stateError}</small>
-                
-                <label className="body-two form-element-7">ZIPCODE*
-                    <input type="text" required value={zipcode} maxLength="5" onChange={e => setZipcode(e.currentTarget.value)} />
-                </label>
-                
-                <small className="form-element-8">{zipcodeError}</small>
-                
-                <label className="body-two form-element-9">WHAT IS YOUR AFFILIATION TO THIS ORGANIZATION?*
+                <small className="form-element">{stateError}</small>
+
+                <label className="body-two form-element">What is your affiliation to this organization?*
                     <input type="text" required value={orgAffiliation} onChange={e => setOrgAffiliation(e.currentTarget.value)} />
                 </label>
-                
-                <label className="body-two form-element-10">HOW MANY EMPLOYEES ARE IN NEED OF MASKS?*
+
+                <label className="body-two form-element">How many employees does this organization have?*
                     <input type="number" required value={numberOfEmployees} onChange={e => setNumberOfEmployees(e.currentTarget.value)}></input>
                 </label>
-                
-                <small className="form-element-11">{numberOfEmployeesError}</small>
+                <small className="form-element">{numberOfEmployeesError}</small>
+            </div>
 
-                <p className="body-two form-element-12">Please indicate which products you would like to order with the quantity you are requesting. <span className="small-text">We are only accepting orders in increments of 10 and minimum orders of 20 right now.</span></p>
-                <label className="body-two form-element-13">Masks
+            <div className="customer-inputs__2">
+                <div className="order-header">
+                    <p className="body-one">Order Details</p>
+                    <p className="body-two form-element">Please indicate which products you would like to order with the quantity you are requesting. </p>
+                    <p className="small-text">We are only accepting orders in increments of 10 and minimum orders of 20 right now.</p>
+                </div>
+                <label className="body-two form-element">Masks
                     <input type="number" value={maskRq} step={10} onChange={e => setMaskRq(e.currentTarget.value) } />
                 </label>
-                <label className="body-two form-element-14">Gowns
+                <label className="body-two form-element">Gowns
                     <input type="number" value={gownRq} step={10} onChange={e => setGownRq(e.currentTarget.value) } />
                 </label>
-                <label className="body-two form-element-15">Face Shields
+                <label className="body-two form-element">Face Shields
                     <input type="number" value={faceShieldRq} step={10} onChange={e => setFaceShieldRq(e.currentTarget.value)} />
                 </label>
-                <small className="form-element-16">{orderQtyError}</small>
+                <small className="form-element">{orderQtyError}</small>
 
 
             </div>
-           
+           </>
         )
     }
 
@@ -428,13 +430,14 @@ export const SignupForm = props => {
         <>
             <p className='body-two'>{header}</p>
             <form className='modal__form' onSubmit={handleSubmit}>
+            
                 {allUserInputs}
                 {volunteerInputs}
                 {customerInputs}
                 <div className='form-bottom'>
-                    <input  type="submit" value="Sign Up"/>
+                    <input className="call-to-action background-orange body-two"  type="submit" value="SIGN UP"/>
                     <small>{errorMessage}</small>
-                    <p className="small-text">Required*</p>
+                    <p className="small-text">*Indicates required fields</p>
                 </div>
             </form>
 
