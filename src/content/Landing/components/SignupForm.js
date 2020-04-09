@@ -109,7 +109,8 @@ export const SignupForm = props => {
                     address_two: address2,
                     city,
                     state,
-                    total_inventory_to_date: 0
+                    total_inventory_to_date: 0,
+                    inventory: []
                 }
             }
         }
@@ -145,7 +146,8 @@ export const SignupForm = props => {
                     address_two: address2,
                     city,
                     state,
-                    total_inventory_to_date: 0
+                    total_inventory_to_date: 0,
+                    inventory: []
                 }
             }
         }
@@ -195,7 +197,8 @@ export const SignupForm = props => {
                         city,
                         state,
                         num_of_employees: numberOfEmployees,
-                        org_affiliation: orgAffiliation
+                        org_affiliation: orgAffiliation,
+                        orders: []
                     },
                     productOrderDetails
             }
