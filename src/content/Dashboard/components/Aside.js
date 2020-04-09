@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AsideItem } from './AsideItem';
 
 export const Aside = props => {
 
@@ -21,6 +22,12 @@ export const Aside = props => {
         )
     });
 
+    
+
+    
+
+
+
     return (
         <div className='aside'>
             <div className='aside__header'>
@@ -30,7 +37,7 @@ export const Aside = props => {
                 </div>
             </div>
             <div className='aside__content'>
-
+                
             </div>
             <div className='aside__footer'></div>
         </div>

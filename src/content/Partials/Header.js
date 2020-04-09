@@ -2,7 +2,7 @@
 import React from 'react';
 import {Redirect, Link} from 'react-router-dom'
 // components
-import { AuthLink, Menu } from './components';
+import { AuthLink } from './components';
 
 export const Header = props => {
     const handleLogout = () => {
