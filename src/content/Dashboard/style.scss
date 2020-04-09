@@ -21,9 +21,19 @@
         }
         &__item {
             margin: .3em;
-            height: 10vh;
+            height: 11vh;
             width: 98%;
             border: 2px solid $brand-green;
+            &__order {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+            &__status {
+                height: 5vh;
+                width: 2.8vw;
+                border-radius: 100px;
+            }
         };
         &__tab {
             padding: 7.2px;
@@ -37,7 +47,7 @@
             }
         }
         &__tabs {
-            margin-bottom: -1em;
+            margin-bottom: -1.4em;
         }
     }
 }

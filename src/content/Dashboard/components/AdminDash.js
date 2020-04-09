@@ -50,9 +50,31 @@ export const AdminDash = props => {
             })
         } else if (activeTab === 'Orders') {
             content = props.orders.map(ord => {
-                return <AdminDashItem 
+                let item = ord.item.product.name
+                let total = ord.item.total
+                let status;
+                if (ord.cust_cancelled || ord.admin_cancelled || !ord.accepted) {
+                    status = 'black';
+                }
+                if (ord.accepted) {
+                    status = 'red';
+                }
+                if (ord.in_progress) {
+                    status = 'orange'
+                }
+                if (ord.ready_for_delivery) {
+                    status = 'yellow'
+                }
+                if (ord.completed) {
+                    status = 'green'
+                }
+                return <AdminDashItem
+                    item={item}
                     key={ord._id}
                     orderNo={ord._id}
+                    status={status}
+                    total={total}
+                    className='dashboard__admin__item__order'
                 />
             })
         }

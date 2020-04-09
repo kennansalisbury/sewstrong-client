@@ -3,8 +3,8 @@ import { AsideItem } from './AsideItem';
 
 export const Aside = props => {
 
-    const [activeTab, setActiveTab] = useState('Something');
-    const [asideTabs, setAsideTabs] = useState(['Something','Else']);
+    const [activeTab, setActiveTab] = useState('Current');
+    const [asideTabs, setAsideTabs] = useState(['Current','All Time']);
 
     const handleTabToggle = e => {
         setActiveTab(e.target.getAttribute('name'));
@@ -21,13 +21,7 @@ export const Aside = props => {
             </p>
         )
     });
-
     
-
-    
-
-
-
     return (
         <div className='aside'>
             <div className='aside__header'>
