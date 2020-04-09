@@ -9,6 +9,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    height: 100%;
     &__banner {
         min-height: 50vh;
         background-image: url('https://i.imgur.com/UhqaDR7.png');
@@ -45,6 +46,8 @@
         }
     }
 }
+
+
 // // components
 .call-to-action {
     margin: 0 auto;
@@ -121,18 +124,28 @@
 // modals
 .modal {
     z-index: 1;
-    position: fixed;
-    margin: 10% auto;
-    width: 60vw;
-    max-height: 70vh;
-    overflow: scroll;
+    position: absolute;
+    margin: 0 auto;
+    width: 80vw;
+    min-height: 70vh;
+    // height: 100%;
     background-color: white;
     border: 1px solid gray;
     border-radius: 5%;
-    padding: 3%;
+    padding: 2% 4%;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 5% 1fr;
+    box-shadow: 3px 5px #8080806e;
+    overflow: scroll;
+    @include responsive($lg) {
+        position: fixed;
+        margin: 5% auto;
+        max-width: 60vw;
+        min-height: 40vh;
+        max-height: 70vh;
+        overflow: scroll;
+    }
     & p {
         margin: 0;
     } 
@@ -145,28 +158,40 @@
     }
     &__content {
         padding: 0 5% 5% 5%;
-        // height: 90%;
+        // max-height: 100%;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 8% 1fr;
+        grid-template-rows: 8% 5% 1fr;
         grid-row: 2;
         grid-column: 1;
     }
     &__login {
-        height: 30%;
-        width: 80%;
+        // border: 1px solid gray;
+        height: 50%;
+        width: 40%;
         grid-column: 1;
-        grid-row: 2;
+        grid-row: 3;
         margin: 15% auto;
         display: grid;
         grid-template-columns: 100%;
         grid-template-rows: repeat(auto, 1fr);
+        grid-auto-flow: row;
         row-gap: 2%;
-        @include form-element-rows(1);
-        @include form-element-rows(2);
+        text-align: left;
+        & .form-element {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+            padding-left: 10%;
+        }
+        // @include form-element-rows(1);
+        // @include form-element-rows(2);
     }
     &__form {
         width: 100%;
+        // height: 100%;
+        padding-top: 3%;
         grid-column: 1;
         grid-row: 3;
         display: grid;
@@ -174,7 +199,8 @@
         grid-template-rows: repeat(auto, 1fr);
         row-gap: 5%;
         @include responsive($lg) {
-            grid-template-columns: 40% 40%;
+            grid-template-columns: 45% 45%;
+            column-gap: 10%;
         }
         & small {
             color: red;
@@ -186,53 +212,33 @@
             display: grid;
             grid-template-columns: 100%;
             grid-template-rows: repeat(auto, 1fr);
-            @include form-element-rows(1);
-            @include form-element-rows(2);
-            @include form-element-rows(3);
-            @include form-element-rows(4);
-            @include form-element-rows(5);
-            @include form-element-rows(6);
-            @include form-element-rows(7);
-            @include form-element-rows(8);
-            @include form-element-rows(9);
-            @include form-element-rows(10);
-            @include form-element-rows(11);
+            grid-auto-flow: row;
+            text-align: left;
             & input {
                 width: 100%;
                 margin-left: 1%;
             }
         }
-        & .volunteer-inputs__all {
+        & .volunteer-inputs {
             width: 100%;
-            grid-column: 1;
-            grid-row: 2;
+            height: 100%;
             display: grid;
             grid-template-columns: 100%;
-            grid-template-rows: repeat(auto, 1fr);
-            @include form-element-rows(1);
-            @include form-element-rows(2);
-            @include form-element-rows(3);
-            @include form-element-rows(4);
-            @include form-element-rows(5);
-            @include form-element-rows(6);
-            @include responsive($lg) {
-                margin-left: 20%;
-                grid-column: 2;
-                grid-row: 1;
+            grid-template-rows: 45% 55%;
+            grid-auto-flow: row;
+            text-align: left;
+            &__1-all {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 100%;
+                grid-template-rows: repeat(auto, 50%);
             }
             &__2-maker {
                 width: 100%;
                 display: grid;
                 grid-template-columns: 100%;
                 grid-template-rows: repeat(auto, 1fr);
-                @include form-element-rows(1);
-                @include form-element-rows(2);
-                @include form-element-rows(3);
-                @include form-element-rows(4);
-                @include form-element-rows(5);
-                @include form-element-rows(6);
-                @include form-element-rows(7);
-                @include form-element-rows(8);
+                grid-auto-flow: row;
                 & input {
                     width: 100%;
                 }
@@ -250,44 +256,43 @@
             }
         }
         
-        & .inputs-2-customer {
-            width: 70%;
+        & .customer-inputs__1 {
+            width: 100%;
             display: grid;
             grid-template-columns: 100%;
             grid-template-rows: repeat(auto, 1fr);
-            @include form-element-rows(1);
-            @include form-element-rows(2);
-            @include form-element-rows(3);
-            @include form-element-rows(4);
-            @include form-element-rows(5);
-            @include form-element-rows(6);
-            @include form-element-rows(7);
-            @include form-element-rows(8);
-            @include form-element-rows(9);
-            @include form-element-rows(10);
-            @include form-element-rows(11);
-            @include form-element-rows(12);
-            @include form-element-rows(13);
-            @include form-element-rows(14);
-            @include form-element-rows(15);
-            @include form-element-rows(16);
-            @include form-element-rows(17);
-            @include form-element-rows(18);
-
+            grid-auto-flow: row;
+            text-align: left;
+            & input {
+                width: 100%
+            }
+        }
+        & .customer-inputs__2 {
+            width: 100%;
+            display: grid;
+            grid-template-rows: repeat(auto, 1fr);
+            grid-template-columns: 100%;
+            text-align: left;
+            row-gap: 5%;
+            @include responsive($lg) {
+                grid-column: 1/3;
+            }
+            & input {
+                margin-left: 1%;
+            }
         }
         & .form-bottom {
-            grid-column: 1;
-            grid-row: 3;
+            padding-bottom: 5%;
             @include responsive($lg) {
                 grid-column: 1/3;
             }
         }
-
     }
     &__header {
         text-align: center;
     }
     &__prompt {
+        grid-row: 3;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -296,19 +301,85 @@
         }
     }
 }
-// .modal-content {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     padding: 0 5% 5% 5%;
-// }
-// .modal-form {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: flex-start;
-//     width: 80%;
-// }
 .modal-header {
     text-align: center;
+}
+
+//about & contact pages
+.landing-secondary {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 5% auto;
+    &__intro {
+        // width: 80%;
+        border: 1px solid rgba(128, 128, 128, 0.541);
+        border-radius: 20px;
+        padding: 1%;
+    }
+    &__products {
+        width: 100%;
+        & .img-left {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            & img {
+                width: 50%;
+                margin-bottom: 5%;
+            }
+        }
+        & .img-right {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            & img {
+                width: 50%;
+                margin-bottom: 5%;
+            }
+        }
+        & .text {
+            width: 100%;
+        }
+        @include responsive($lg) {
+            & .img-left {
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                text-align: left;
+                & img {
+                    width: 25%;
+                    height: auto;
+                    margin-right: 2%;
+                }
+            }
+            & .img-right {
+                flex-direction: row-reverse;
+                justify-content: center;
+                align-items: flex-start;
+                text-align: left;
+                & img {
+                    width: 25%;
+                    height: auto;
+                }
+            }
+            & .text {
+                width: 60%;
+            }
+        }
+       
+    }
+    &__cta {
+        margin-top: 5%;
+        width: 100%;
+        border: 1px solid rgba(128, 128, 128, 0.541);
+        border-radius: 20px;
+        padding: 1%;
+    }
+    
 }

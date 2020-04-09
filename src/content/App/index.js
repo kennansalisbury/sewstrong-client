@@ -84,8 +84,6 @@ export const App = () => {
                 <Route path={ROUTES.ABOUT} component={About} />
 
                 <Route path={ROUTES.CONTACT} component={Contact} />
-
-                <Footer />
             </div>
         </Router>
     )

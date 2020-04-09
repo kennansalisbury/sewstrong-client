@@ -54,18 +54,20 @@ export const Login = props => {
                 <div className='modal__content'>
                     <p className='body-one modal__header'>Login</p>
                     <form className='modal__login' onSubmit={handleSubmit}>
-                        <label className="form-element-1">Email
+                        <label className="form-element">Email
                             <input type="text" value={email} onChange={e => setEmail(e.currentTarget.value)} />
                         </label>
-                        <label className="form-element-2">Password
+                        <label className="form-element">Password
                             <input type="password" value={password} onChange={e => setPassword(e.currentTarget.value)} />
                         </label>
 
-                        <div className="form-bottom">
+                        {/* <div className="form-bottom"> */}
+                        <div className="form-element">
                             <input type="submit" value="Login"/>
-                            {/* error messages show here */}
-                            <small>{message}</small>
                         </div>
+                            {/* error messages show here */}
+                        <small className="form-element">{message}</small>
+                        {/* </div> */}
 
                     </form>
                 </div>

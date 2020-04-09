@@ -244,48 +244,49 @@ export const SignupForm = props => {
 
     let allUserInputs = (
         <div className="all-user-inputs">
+                {/* <p className="body-three">&larr; BACK</p> */}
 
-                <label className="body-two form-element-1">FIRST NAME* 
+                <label className="body-two form-element">FIRST NAME* 
                     <input type="text" required value={firstName} onChange={e => setFirstName(e.currentTarget.value)} />
                 </label>
-                <label className="body-two form-element-2">LAST NAME 
+                <label className="body-two form-element">LAST NAME 
                     <input type="text" value={lastName} onChange={e => setLastName(e.currentTarget.value)} />
                 </label>
 
 
 
-                <label className="body-two form-element-3">EMAIL* 
+                <label className="body-two form-element">EMAIL* 
                         <input type="email" required value={email} onChange={e => setEmail(e.currentTarget.value)} />
                 </label> 
 
 
 
-                <label className="body-two form-element-4">PASSWORD* 
+                <label className="body-two form-element">PASSWORD* 
                     <input type="password" required value={password} onChange={e => setPassword(e.currentTarget.value)} />     
                 </label>
 
 
-                <label className="body-two form-element-5">VERIFY PASSWORD* 
+                <label className="body-two form-element">VERIFY PASSWORD* 
                     <input type="password" required value={verifyPassword} onChange={e => {setVerifyPassword(e.currentTarget.value)}} />
                 </label>
 
 
-                <small className="form-element-6">{verifyPasswordError}</small>
-                <small className="form-element-7">{passwordError}</small>
+                <small className="form-element">{verifyPasswordError}</small>
+                <small className="form-element">{passwordError}</small>
 
             {/* set so that phone number field has dashes? */}
         
-                <label className="body-two form-element-8">CELL*
+                <label className="body-two form-element">CELL*
                 <input type="text" required value={phone} maxLength="10" onChange={e => setPhone(e.currentTarget.value)}/>
                 </label>
 
-                <small className="form-element-9">{phoneError}</small>
+                <small className="form-element">{phoneError}</small>
 
-                <label className="body-two form-element-10">ZIPCODE*
+                <label className="body-two form-element">ZIPCODE*
                         <input type="text" required value={zipcode} maxLength="5" onChange={e => setZipcode(e.currentTarget.value)} />
                 </label>
-                <small className="form-element-11">{zipcodeError}</small>
-                <p className="form-element-12 small-text">We will need your zipcode for matching you with volunteers or organizations in your area.</p>
+                <small className="form-element">{zipcodeError}</small>
+                <p className="form-element small-text">We will need your zipcode for matching you with volunteers or organizations in your area.</p>
         </div>
     )
  
@@ -293,7 +294,7 @@ export const SignupForm = props => {
 
     let header = 'MAKE A REQUEST FOR YOUR ORGANIZATION'
     let volunteerInputs = ''
-    let volunteerDynamicInputs = ''
+    let volunteerDynamicInputs = <div className="volunteer-inputs__2-maker"></div>
     let customerInputs = ''
     
 
@@ -302,59 +303,63 @@ export const SignupForm = props => {
         if(isMaker || (isMaker && isDriver)) {
             volunteerDynamicInputs = (
                 <div className="volunteer-inputs__2-maker">
-             
-                    <label className="body-two form-element-1" >ADDRESS LINE 1
-                        <input type="text" value={address1} onChange={e => setAddress1(e.currentTarget.value)} /> 
+                    <p className="form-element small-text">Please provide your address so we have on file for pick ups. </p>
+
+                    <label className="body-two form-element" >ADDRESS LINE 1
+                        <input required type="text" value={address1} onChange={e => setAddress1(e.currentTarget.value)} /> 
                     </label>  
 
             
-                    <label className="body-two form-element-2">ADDRESS LINE 2
+                    <label className="body-two form-element">ADDRESS LINE 2
                         <input type="text" value={address2} onChange={e => setAddress2(e.currentTarget.value)} />
                     </label>
 
-                    <label className="body-two form-element-3">CITY
-                        <input type="text" value={city} onChange={e => setCity(e.currentTarget.value)} />
+                    <label className="body-two form-element">CITY
+                        <input required type="text" value={city} onChange={e => setCity(e.currentTarget.value)} />
                     </label>
                     
-                    <label className="body-two form-element-4">STATE
-                        <input type="text" value={state} maxLength="2" onChange={e => {setState(e.currentTarget.value.toUpperCase())}} />
+                    <label className="body-two form-element">STATE
+                        <input required type="text" value={state} maxLength="2" onChange={e => {setState(e.currentTarget.value.toUpperCase())}} />
                     </label>
 
-                    <small className="form-element-5">{stateError}</small>
+                    <small className="form-element">{stateError}</small>
 
-                    <p className="form-element-6 small-text">While not required, we use your address to match you with local delivery drivers. If left blank, we won't be able to offer pick-up.</p>
                 </div>
+            
             )
         }
 
         volunteerInputs = ( 
-            <div className="volunteer-inputs__all">
-                <p className='body-two form-element-1'>I WOULD LIKE TO: <span className="small-text">(choose all that apply)</span></p>
-                <div className='form-element-2 input-checkbox'>
+          
+            <div className="volunteer-inputs">
+                <div className="volunteer-inputs__1-all">
+                {/* <br/> */}
+                <div className='body-two form-element'>I WOULD LIKE TO*: <p className="small-text">(choose all that apply)</p></div>
+                
+
+                <div className='form-element input-checkbox'>
                     <label className="body-three">  
                         <input type='checkbox' name='isMaker' onChange={e => {setIsMaker(e.target.checked)}} />
                         Sew Masks/Make Face Shields/Make Gowns </label>
                 </div>
-                <div className='form-element-3 input-checkbox'>
+                <div className='form-element input-checkbox'>
                     <label className="body-three">
                         <input type='checkbox' name='isDriver'  onChange={e => setIsDriver(e.target.checked)} />
                         Pick up and Deliver Materials</label>
                 </div>
-                <div className='form-element-4 input-checkbox'> 
+                <div className='form-element input-checkbox'> 
                     <label className="body-three">
                         <input type='checkbox' name='isOther' onChange={e => setIsOther(e.target.checked)} />   
-                        Other</label>
-                </div>
-                <div className='form-element-5 input-checkbox'>
-                    {/* <label className='small-text'>If you checked 'Other', please let us know how you would like to help: </label> */}
-                    <input type='text' onChange={e => setOther(e.currentTarget.value)} />
+                        Other <input type='text' onChange={e => setOther(e.currentTarget.value)} /></label>
+                        {isOther ? <p className='small-text'>Please let us know how you would like to help. </p> : ''}
                 </div>
 
-                <small className="form-element-6" >{volunteerChecksError}</small>
-
+                <small className="form-element" >{volunteerChecksError}</small>
+                </div>
                 {volunteerDynamicInputs}
-
             </div>
+                
+           
         )
     }
       
@@ -362,60 +367,62 @@ export const SignupForm = props => {
     else if(props.signupType === 'CUSTOMER') {
         
         customerInputs = (
+            <>
+            <div className="customer-inputs__1">
             
-            <div className="inputs-2-customer">
-                <label className="body-two form-element-1">ORGANIZATION NAME*
+                
+                <label className="body-two form-element">ORGANIZATION NAME*
                     <input type="text" required value={orgName} onChange={e=>setOrgName(e.currentTarget.value)}/>
                 </label>
                 
-                <label className="body-two form-element-2">ADDRESS LINE 1*
+                <label className="body-two form-element">ADDRESS LINE 1*
                     <input type="text" required value={address1} onChange={e => setAddress1(e.currentTarget.value)} />
                 </label>
 
-                <label className="body-two form-element-3">ADDRESS LINE 2
+                <label className="body-two form-element">ADDRESS LINE 2
                     <input type="text" value={address2} onChange={e => setAddress2(e.currentTarget.value)} />
                 </label>
                 
-                <label className="body-two form-element-4">CITY*
+                <label className="body-two form-element">CITY*
                     <input type="text" required value={city} onChange={e => setCity(e.currentTarget.value)} />
                 </label>
                 
-                <label className="body-two form-element-5">STATE* 
+                <label className="body-two form-element">STATE* 
                     <input type="text" required value={state} maxLength="2" onChange={e => setState(e.currentTarget.value.toUpperCase())} />
                 </label>
                 
-                <small className="form-element-6">{stateError}</small>
-                
-                <label className="body-two form-element-7">ZIPCODE*
-                    <input type="text" required value={zipcode} maxLength="5" onChange={e => setZipcode(e.currentTarget.value)} />
-                </label>
-                
-                <small className="form-element-8">{zipcodeError}</small>
-                
-                <label className="body-two form-element-9">WHAT IS YOUR AFFILIATION TO THIS ORGANIZATION?*
+                <small className="form-element">{stateError}</small>
+
+                <label className="body-two form-element">What is your affiliation to this organization?*
                     <input type="text" required value={orgAffiliation} onChange={e => setOrgAffiliation(e.currentTarget.value)} />
                 </label>
-                
-                <label className="body-two form-element-10">HOW MANY EMPLOYEES ARE IN NEED OF MASKS?*
+
+                <label className="body-two form-element">How many employees does this organization have?*
                     <input type="number" required value={numberOfEmployees} onChange={e => setNumberOfEmployees(e.currentTarget.value)}></input>
                 </label>
-                
-                <small className="form-element-11">{numberOfEmployeesError}</small>
+                <small className="form-element">{numberOfEmployeesError}</small>
+            </div>
 
-                <p className="body-two form-element-12">Please indicate which products you would like to order with the quantity you are requesting. <span className="small-text">We are only accepting orders in increments of 10 and minimum orders of 20 right now.</span></p>
-                <label className="body-two form-element-13">Masks
+            <div className="customer-inputs__2">
+                <div className="order-header">
+                    <p className="body-one">Order Details</p>
+                    <p className="body-two form-element">Please indicate which products you would like to order with the quantity you are requesting. </p>
+                    <p className="small-text">We are only accepting orders in increments of 10 and minimum orders of 20 right now.</p>
+                </div>
+                <label className="body-two form-element">Masks
                     <input type="number" value={maskRq} step={10} onChange={e => setMaskRq(e.currentTarget.value) } />
                 </label>
-                <label className="body-two form-element-14">Gowns
+                <label className="body-two form-element">Gowns
                     <input type="number" value={gownRq} step={10} onChange={e => setGownRq(e.currentTarget.value) } />
                 </label>
-                <label className="body-two form-element-15">Face Shields
+                <label className="body-two form-element">Face Shields
                     <input type="number" value={faceShieldRq} step={10} onChange={e => setFaceShieldRq(e.currentTarget.value)} />
                 </label>
-                <small className="form-element-16">{orderQtyError}</small>
+                <small className="form-element">{orderQtyError}</small>
 
 
             </div>
+           </>
         )
     }
 
@@ -423,13 +430,14 @@ export const SignupForm = props => {
         <>
             <p className='body-two'>{header}</p>
             <form className='modal__form' onSubmit={handleSubmit}>
+            
                 {allUserInputs}
                 {volunteerInputs}
                 {customerInputs}
                 <div className='form-bottom'>
-                    <input  type="submit" value="Sign Up"/>
+                    <input className="call-to-action background-orange body-two"  type="submit" value="SIGN UP"/>
                     <small>{errorMessage}</small>
-                    <p className="small-text">Required*</p>
+                    <p className="small-text">*Indicates required fields</p>
                 </div>
             </form>
 
