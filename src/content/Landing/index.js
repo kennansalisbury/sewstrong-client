@@ -124,7 +124,7 @@ export const Landing = props => {
                 />
             </div>
             {/* </div> */}
-            {/* <Footer /> */}
+            <Footer />
         </div>
     )
 };
