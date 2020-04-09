@@ -1,6 +1,6 @@
 // dependencies
 import React from 'react';
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 // components
 import { AuthLink, Menu } from './components';
 
@@ -17,10 +17,11 @@ export const Header = props => {
                     <p className='heading-two'>SewStrong</p>
                 </div>
                 <div className='header__nav'>
-                    <a className='header__nav__link body-two' href='#'>Home</a>
-                    <a className='header__nav__link body-two' href='#'>Volunteer</a>
-                    <a className='header__nav__link body-two' href='#'>Order</a>
-                    <a className='header__nav__link body-two' href='#'>Resources</a>
+                    <Link className="header__nav__link body-two" to="/about">About</Link>
+                    <a className='header__nav__link body-two' href='#volunteer'>Volunteer</a>
+                    <a className='header__nav__link body-two' href='#order'>Order</a>
+                    <a className='header__nav__link body-two' href='#resources'>Resources</a>
+                    <a className='header__nav__link body-two' href='#contact'>Contact</a>
                 </div>
                 <div className='header__auth'>
                     <AuthLink text='SIGN UP' type='background-orange' setShowSignup={props.setShowSignup} />

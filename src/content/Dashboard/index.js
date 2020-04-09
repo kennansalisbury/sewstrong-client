@@ -1,5 +1,5 @@
 // dependencies
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
 // pages
 import { Admin } from './Admin';
@@ -9,11 +9,25 @@ import { Header } from '../Partials';
 // styles
 import './style.scss';
 
-export const Dashboard = props => {
+export const Dashboard = props => {    
 
-    // if (!props.user) {
-    //     return <Redirect to='/' />
-    // }
+    //state for passing to components
+        //userType, setUserType
+        //showModal, setShowModal
+
+    if (!props.user) {
+        return <Redirect to='/' />
+    }
+
+    if(props.user.maker) {
+    //    return <Volunteer user={props.user} updateUser={props.updateUser} products={props.products} />
+    return (
+        <>
+            <Header user={props.user} updateUser={props.updateUser}/>
+            <h1>Maker Dashboard Stub</h1>
+        </>
+        )
+    }
 
     if(props.user.customer) {
         return (
@@ -44,13 +58,17 @@ export const Dashboard = props => {
             )
     }
 
+    if(props.user.adminPermissions) {
+
+  
     return (
         <>
             <Header user={props.user} updateUser={props.updateUser}/>
-        
-            {/* <Volunteer user={props.user} updateUser={props.updateUser} products={props.products} /> */}
 
             <Admin />
         </>
     )
+    }
+
+    return null
 }

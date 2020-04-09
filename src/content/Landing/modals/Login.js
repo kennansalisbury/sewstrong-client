@@ -61,11 +61,11 @@ export const Login = props => {
                             <input type="password" value={password} onChange={e => setPassword(e.currentTarget.value)} />
                         </label>
 
-                    
-                        <input className="form-element-3" type="submit" value="Login"/>
-
-                        {/* error messages show here */}
-                        <small className="form-element-4">{message}</small>
+                        <div className="form-bottom">
+                            <input type="submit" value="Login"/>
+                            {/* error messages show here */}
+                            <small>{message}</small>
+                        </div>
 
                     </form>
                 </div>

@@ -1,24 +1,14 @@
 // dependencies
 import React, { useState, useEffect } from 'react';
+import {StaticListItem} from './index'
 
 export const ListItem = props => {
     
     const [toggle, setToggle] = useState(false)
-    const [orderStatus, setOrderStatus] = useState('')
 
-    useEffect(() => {
-        if(props.data) {
-            if(props.data.orderNumber) {
-                props.data.readyForDelivery ? setOrderStatus('Ready for Delivery') :
-                props.data.collected ? setOrderStatus('Delivery in progress') :
-                props.data.delivered ? setOrderStatus('Delivered') :
-                props.data.orgReceived ? setOrderStatus('Complete') :
-                props.data.cancelled ? setOrderStatus('Cancelled') :
-                setOrderStatus('Awaiting inventory')
-            }
-        }
-        
-    },[props.data])
+
+
+    console.log('🌷🌷🌷 List Item Data', props.data)
     
     let accordianClassName = 'list__item__closed'
     const toggleData = e => { 
@@ -29,91 +19,56 @@ export const ListItem = props => {
         return null
     }
 
+
     let content
-    if(props.data.product) {
-        content = <p>Current Inventory: {props.data.currentInventory}</p>
-    }
-    if(props.data.orderNumber) {
+    if(props.data) {
         content = (
-            <p>{orderStatus}</p>
+            props.data.map((item, i) => {
+                return(
+                    <StaticListItem 
+                        key={i} 
+                        units={item.inventory || item.pledgeQty} 
+                        pledgeGoal={item.pledgeGoal || ''} 
+                        complete={(item.readyForDelivery || item.selfDelivery || item.pickUpDelivery) ? item.updatedAt : false}
+                        type={item.product}
+                        pledgeMade={item.createdAt}
+                    />
+                )
+            })
         )
     }
 
-    let hiddenContent
+
     if(toggle){
         accordianClassName = 'list__item__open'
-        if(props.data.maker) {
-            let phone = `(${props.data.phone[0] + props.data.phone[1] + props.data.phone[2]}) ${props.data.phone[3] + props.data.phone[4] + props.data.phone[5]} - ${props.data.phone[6] + props.data.phone[7] + props.data.phone[8] + props.data.phone[9]} `
-            hiddenContent= (
-                <div>
-                    <p>Email: {props.data.email}</p>
-                    <p>Display Name: {props.data.username}</p>
-                    <p>Phone: {phone}</p>
-                    <p>Address:</p>
-                    <p>{props.data.maker.address}</p>
-                    <p>{props.data.maker.city}, {props.data.maker.state} {props.data.maker.zipcode}</p>
-                    <div className='auth-link background-orange body-two`'>Update Info</div>
-                </div>
-            )
-        }
-        if(props.data.product) {
-            hiddenContent = (
-                <div>
-                    {/* <p>Produced to Date: {props.data.producedToDate}</p> */}
-                    <div className='auth-link background-orange body-two`'>Ready for delivery?</div>
-                    <div className='auth-link background-orange body-two`'>Update Inventory</div>
-                </div>
-            )
-        }
-      
-        if(props.data.teamLead) {
-            let phone = `(${props.data.phone[0] + props.data.phone[1] + props.data.phone[2]}) ${props.data.phone[3] + props.data.phone[4] + props.data.phone[5]} - ${props.data.phone[6] + props.data.phone[7] + props.data.phone[8] + props.data.phone[9]} `
-
-            hiddenContent = (
-                <div>
-                    <p>Email: <a href={`mailto:${props.data.email}`}>{props.data.email}</a></p>
-                    <p>Phone: {phone}</p>
-                </div>
-            )
         }
 
-        if(props.data.orderNumber){
-            if(props.user.maker) {
-                let currentMakerProductionDetails = props.data.productionDetails.filter((item, i) => item.maker === props.user._id)
-                content = ''
-                hiddenContent = (
-                    <div className="order">
-                        <h4 className="order-header-1">Order #</h4>
-                        <p className="order-row2-col1">{props.data.orderNumber}</p>
-                        <h4 className="order-header-2"># Needed</h4>
-                        <p className="order-row2-col2">{currentMakerProductionDetails[0].toBeFulfilledQty}</p>
-                        <h4 className="order-header-3">Status</h4>
-                        <p className="order-row2-col3">{orderStatus}</p>
-                        <h4 className="order-header-4">Product</h4>
-                        <p className="order-row2-col4">{props.getProductName(props.data.productOrderDetails.product)}</p>
-                        <h4 className="order-header-5">Ready for Delivery?</h4>
-                        <div className='order-row2-col5 auth-link background-orange body-two`'>Ready to Go!</div>
-                        
-                    </div>
-                )
-            }
-           
-        }
+        // listItems = currentPledges.map((pledge, i) => {
+        //     return <ListItem key={i}  text={pledge.product} data={pledge} user={props.user} getProductName={getProductName} />
+        // })
        
-    }
-
+        // listItems = history.map((pledge, i) => {
+        //     return <ListItem key={i}  text={pledge.product} data={pledge} user={props.user} getProductName={getProductName} />
+        // })
+    
     console.log('PROOOOOPS', props)
 
     return (
-        <div>
             
             <div className={accordianClassName} onClick={toggleData}>
-            <p>{props.text}</p>
-            {content}
-            {hiddenContent}
-            </div>
-            
-            
-        </div>
+                <div className="production">
+                        <div className="production__list-items">
+                            <h4 className="body-three"># Units</h4>
+                            <h4 className="body-three">Type</h4>
+                            <h4 className="body-three">Pledge Made</h4>
+                            <h4 className="body-three">Pledge Goal</h4>
+                            <h4 className="body-three">Complete</h4>
+                        </div>
+                        {content}
+                    </div>
+                    {/* <h4 className="order-header-6">Delivery</h4> */}
+                    {/* <div className='order-row2-col5 auth-link background-orange body-two`'>Ready to Go!</div>      */}
+                </div>
+  
     )
 };
