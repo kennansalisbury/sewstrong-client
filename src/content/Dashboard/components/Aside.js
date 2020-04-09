@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AsideItem } from './AsideItem';
 
 export const Aside = props => {
 
@@ -15,22 +16,28 @@ export const Aside = props => {
             className += ' aside__tab__active'
         };
         return (
-            <p className={className} key={tab} name={tab} onClick={handleTabToggle}>
+            <p className={`body-two ${className}`} key={tab} name={tab} onClick={handleTabToggle}>
                 {tab}
             </p>
         )
     });
 
+    
+
+    
+
+
+
     return (
         <div className='aside'>
             <div className='aside__header'>
-                <p>Snapshot</p>
+                <p className='body-two'>Snapshot</p>
                 <div className='aside__header__tabs'>
                     {tabs}
                 </div>
             </div>
             <div className='aside__content'>
-
+                
             </div>
             <div className='aside__footer'></div>
         </div>
