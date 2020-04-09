@@ -44,9 +44,9 @@ export const Dashboard = props => {
         content = (
             <div className='dashboard'>
                 <Aside
-                    volunteerInfo={data[0].volunteers}
-                    customerInfo={data[1].customers}
-                    orderInfo={data[2].orders}
+                    volunteers={data[0].volunteers}
+                    customers={data[1].customers}
+                    orders={data[2].orders}
                 />
                 <AdminDash 
                     volunteers={data[0].volunteers}
