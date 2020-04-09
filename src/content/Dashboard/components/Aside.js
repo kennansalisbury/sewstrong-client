@@ -33,6 +33,7 @@ export const Aside = props => {
     if (props) {
         props.volunteers.forEach(vol => {
             if (vol.maker) {
+                currentMakers++
                 vol.maker.inventory.forEach(item => {
                     if (item.product.name === 'Mask') {
                         currentMasks += item.total_units
@@ -45,8 +46,16 @@ export const Aside = props => {
                     }
                 })
             }
+            if (vol.driver) {
+                currentDrivers++
+            }
+        });
+        props.customers.forEach(cust => {
+            currentCustomers++
+        });
+        props.orders.forEach(ord => {
+            currentOrders++
         })
-
     };
 
 
