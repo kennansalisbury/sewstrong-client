@@ -39,11 +39,9 @@ export const Header = props => {
                         <p className='heading-two'>SewStrong</p>
                     </div>
                     <div className='header__nav'>
-                        <Link className="header__nav__link body-two" to="/about">About</Link>
-                        <a className='header__nav__link body-two' href='#volunteer'>Volunteer</a>
-                        <a className='header__nav__link body-two' href='#order'>Order</a>
-                        <a className='header__nav__link body-two' href='#resources'>Resources</a>
-                        <Link className='header__nav__link body-two' to="/contact">Contact</Link>
+                        <Link className='header__nav__link body-two' to='/'>HOME</Link>
+                        <Link className="header__nav__link body-two" to="/about">ABOUT</Link>
+                        <Link className='header__nav__link body-two' to="/contact">CONTACT</Link>
                     </div>
                     <div className='header__auth'>
                         <AuthLink text='SIGN UP' type='background-orange' setShowSignup={props.setShowSignup} />
