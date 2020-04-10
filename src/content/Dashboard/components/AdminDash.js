@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { AdminDashItem } from './AdminDashItem';
+import { AdminDashCust } from './AdminDashCust';
+import { AdminDashOrder } from './AdminDashOrder';
+import { AdminDashVol } from './AdminDashVol';
 
 export const AdminDash = props => {
 
@@ -33,7 +35,7 @@ export const AdminDash = props => {
                 if (vol.driver) {
                     roles += ' Driver'
                 }
-                return <AdminDashItem
+                return <AdminDashVol
                     key={vol._id}
                     name={vol.first_name + ' ' + vol.last_name}
                     zipcode={vol.zipcode}
@@ -42,7 +44,7 @@ export const AdminDash = props => {
             })
         } else if (activeTab === 'Customers') {
             content = props.customers.map(cust => {
-                return <AdminDashItem 
+                return <AdminDashCust
                     key={cust._id}
                     name={cust.first_name + ' ' + cust.last_name}
                     zipcode={cust.zipcode}
@@ -68,7 +70,7 @@ export const AdminDash = props => {
                 if (ord.completed) {
                     status = 'green'
                 }
-                return <AdminDashItem
+                return <AdminDashOrder
                     item={item}
                     key={ord._id}
                     orderNo={ord._id}

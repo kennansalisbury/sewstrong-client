@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { Header } from '../Partials';
 
 import { AdminDash, Aside } from './components';
 
@@ -13,7 +15,8 @@ export const Dashboard = props => {
     })
 
     if (!props.user) {
-        return null;
+        return <Redirect to='/' />
+
     } else if (props.user.is_admin && !data.length) {
         let token = localStorage.getItem('userToken')
         fetch(`${process.env.REACT_APP_SERVER_URL}/admin`, {
@@ -59,6 +62,10 @@ export const Dashboard = props => {
 
     return (
         <div className='page'>
+            <Header 
+                user={props.user}
+                updateUser={props.updateUser}
+            />
             {content}
         </div>
     )
