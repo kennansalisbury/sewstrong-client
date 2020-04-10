@@ -12,20 +12,23 @@ export const UserDash = props => {
     let faceShields = 0;
     let gowns = 0;
     if (props) {
-        if (props.makerContent.inventory.length) {
-            props.makerContent.inventory.map(inv => {
-                inv.forEach(i => {
-                    if (inv.product.name === 'Mask') {
-                        masks += inv.total_units  
-                    } 
-                    if (inv.product.name === 'Face Shield') {
-                        faceShields += inv.total_units
-                    }
-                    if (inv.product.name === 'Gown') {
-                        gowns += inv.total_units
-                    }
+        if (!props.idAdmin) {
+
+            if (props.makerContent.inventory.length) {
+                props.makerContent.inventory.map(inv => {
+                    inv.forEach(i => {
+                        if (inv.product.name === 'Mask') {
+                            masks += inv.total_units  
+                        } 
+                        if (inv.product.name === 'Face Shield') {
+                            faceShields += inv.total_units
+                        }
+                        if (inv.product.name === 'Gown') {
+                            gowns += inv.total_units
+                        }
+                    })
                 })
-            })
+            }
         }
     };
 
