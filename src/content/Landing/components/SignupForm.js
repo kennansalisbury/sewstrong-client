@@ -247,27 +247,27 @@ export const SignupForm = props => {
                 {/* <p className="body-three">&larr; BACK</p> */}
 
                 <label className="body-two form-element">FIRST NAME* 
-                    <input type="text" required value={firstName} onChange={e => setFirstName(e.currentTarget.value)} />
+                    <input className='body-two' type="text" required value={firstName} onChange={e => setFirstName(e.currentTarget.value)} />
                 </label>
                 <label className="body-two form-element">LAST NAME 
-                    <input type="text" value={lastName} onChange={e => setLastName(e.currentTarget.value)} />
+                    <input className='body-two' type="text" value={lastName} onChange={e => setLastName(e.currentTarget.value)} />
                 </label>
 
 
 
                 <label className="body-two form-element">EMAIL* 
-                        <input type="email" required value={email} onChange={e => setEmail(e.currentTarget.value)} />
+                        <input className='body-two' type="email" required value={email} onChange={e => setEmail(e.currentTarget.value)} />
                 </label> 
 
 
 
                 <label className="body-two form-element">PASSWORD* 
-                    <input type="password" required value={password} onChange={e => setPassword(e.currentTarget.value)} />     
+                    <input className='body-two' type="password" required value={password} onChange={e => setPassword(e.currentTarget.value)} />     
                 </label>
 
 
                 <label className="body-two form-element">VERIFY PASSWORD* 
-                    <input type="password" required value={verifyPassword} onChange={e => {setVerifyPassword(e.currentTarget.value)}} />
+                    <input className='body-two' type="password" required value={verifyPassword} onChange={e => {setVerifyPassword(e.currentTarget.value)}} />
                 </label>
 
 
@@ -277,13 +277,13 @@ export const SignupForm = props => {
             {/* set so that phone number field has dashes? */}
         
                 <label className="body-two form-element">CELL*
-                <input type="text" required value={phone} maxLength="10" onChange={e => setPhone(e.currentTarget.value)}/>
+                <input className='body-two' type="text" required value={phone} maxLength="10" onChange={e => setPhone(e.currentTarget.value)}/>
                 </label>
 
                 <small className="form-element">{phoneError}</small>
 
                 <label className="body-two form-element">ZIPCODE*
-                        <input type="text" required value={zipcode} maxLength="5" onChange={e => setZipcode(e.currentTarget.value)} />
+                        <input className='body-two' type="text" required value={zipcode} maxLength="5" onChange={e => setZipcode(e.currentTarget.value)} />
                 </label>
                 <small className="form-element">{zipcodeError}</small>
                 <p className="form-element small-text">We will need your zipcode for matching you with volunteers or organizations in your area.</p>
@@ -306,20 +306,20 @@ export const SignupForm = props => {
                     <p className="form-element small-text">Please provide your address so we have on file for pick ups. </p>
 
                     <label className="body-two form-element" >ADDRESS LINE 1
-                        <input required type="text" value={address1} onChange={e => setAddress1(e.currentTarget.value)} /> 
+                        <input required className='body-two' type="text" value={address1} onChange={e => setAddress1(e.currentTarget.value)} /> 
                     </label>  
 
             
                     <label className="body-two form-element">ADDRESS LINE 2
-                        <input type="text" value={address2} onChange={e => setAddress2(e.currentTarget.value)} />
+                        <input className='body-two' type="text" value={address2} onChange={e => setAddress2(e.currentTarget.value)} />
                     </label>
 
                     <label className="body-two form-element">CITY
-                        <input required type="text" value={city} onChange={e => setCity(e.currentTarget.value)} />
+                        <input required className='body-two' type="text" value={city} onChange={e => setCity(e.currentTarget.value)} />
                     </label>
                     
                     <label className="body-two form-element">STATE
-                        <input required type="text" value={state} maxLength="2" onChange={e => {setState(e.currentTarget.value.toUpperCase())}} />
+                        <input required className='body-two' type="text" value={state} maxLength="2" onChange={e => {setState(e.currentTarget.value.toUpperCase())}} />
                     </label>
 
                     <small className="form-element">{stateError}</small>

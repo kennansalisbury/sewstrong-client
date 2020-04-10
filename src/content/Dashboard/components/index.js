@@ -1,5 +1,6 @@
 import { AdminDash } from './AdminDash';
-import { AdminDashItem } from './AdminDashItem';
+import { AdminDashOrder } from './AdminDashOrder';
+import { AdminDashVol } from './AdminDashVol';
 import { Aside } from './Aside';
 
-export { AdminDash, AdminDashItem, Aside };
+export { AdminDash, AdminDashOrder, AdminDashVol, Aside };
