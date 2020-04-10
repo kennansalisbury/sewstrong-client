@@ -31,8 +31,10 @@ export const AdminDash = props => {
         if (activeTab === 'Volunteers') {
             content = props.volunteers.map(vol => {
                 let roles = ''
+                let inventory = ''
                 if (vol.maker) {
                     roles += 'Maker'
+                    inventory = vol.maker.inventory
                 }
                 if (vol.driver) {
                     roles += ' Driver'
@@ -43,12 +45,18 @@ export const AdminDash = props => {
                     zipcode={vol.zipcode}
                     roles={roles}
                     setUpdateMade={props.setUpdateMade}
+                    inventory = {inventory}
                 />
             })
         } else if (activeTab === 'Customers') {
             content = props.customers.map(cust => {
+                let activeOrders = cust.customer.orders.filter(order => order.accepted && !order.completed && !order.admin_cancelled && !order.cust_cancelled)
+                let pendingOrders = cust.customer.orders.filter(order => !order.accepted)
                 return <AdminDashCust
                     key={cust._id}
+                    organization = {cust.customer.organization}
+                    activeOrders = {activeOrders.length}
+                    pendingOrders = {pendingOrders.length}
                     name={cust.first_name + ' ' + cust.last_name}
                     zipcode={cust.zipcode}
                     setUpdateMade={props.setUpdateMade}
@@ -94,6 +102,7 @@ export const AdminDash = props => {
                 return <AdminDashOrder
                     item={item}
                     key={ord._id}
+                    organization={ord.customer.customer.organization}
                     orderNo={ord._id}
                     status={status}
                     currentStatus={currentStatus}

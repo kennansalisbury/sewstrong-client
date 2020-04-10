@@ -140,15 +140,16 @@ export const AdminDashOrder = props => {
         <>
         <div className='dashboard__admin__item dashboard__admin__order'>
             <div className='body-three'>
-                {props.orderNo}<br />
-                {props.item}<br />
+                {/* {props.orderNo}<br /> */}
+                {props.organization}<br />
+                {props.item}s<br />
                 {props.total}<br />
             </div>
             <div className='dashboard__admin__order__status__input'>
                 <div className='body-three'>Order Status</div>
                 {status}
             </div>
-            <div className='body-three'>
+            <div className='body-three dashboard___admin__item__column'>
                 <div className={`dashboard__admin__order__status`} style={style}></div>
             </div>
         </div>
