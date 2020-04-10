@@ -22,7 +22,6 @@ export const Dashboard = props => {
             response.json()
             .then(result => {
                 setData(result)
-                console.log(result)
             })
         })
         .catch(err => {
@@ -84,7 +83,6 @@ export const Dashboard = props => {
         let makerContent;
         if (props.user.maker) {
             makerContent=props.user.maker
-            console.log(makerContent)
         }
         if (props.user.driver) {
             driverContent=props.user.driver

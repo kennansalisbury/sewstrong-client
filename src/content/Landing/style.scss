@@ -51,6 +51,13 @@
     border-radius: 20px;
     color: white;
     cursor: pointer;
+    &__small {
+        width: 10vw;
+        border-radius: 20px;
+        color: white;
+        margin: 1em;
+        cursor: pointer;
+    }
     @include responsive($med) {
         width: 33vw;
     }
