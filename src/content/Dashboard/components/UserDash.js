@@ -12,7 +12,7 @@ export const UserDash = props => {
     let faceShields = 0;
     let gowns = 0;
     if (props) {
-        if (!props.idAdmin) {
+        if (props.makerContent || props.driverContent) {
 
             if (props.makerContent.inventory.length) {
                 props.makerContent.inventory.map(inv => {
