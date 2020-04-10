@@ -76,7 +76,6 @@ export const Aside = props => {
                     <AsideItem label='Masks' content='0' />
                     <AsideItem label='Face Shields' content='0' />
                     <AsideItem label='Gowns' content='0' />
-                    {/* <AsideItem label */}
                 </div>
             )
         }
