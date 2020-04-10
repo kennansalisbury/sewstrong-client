@@ -38,6 +38,12 @@
                 height: 5vh;
                 width: 2.8vw;
                 border-radius: 100px;
+                &__input {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
             }
         }
         &__tab {

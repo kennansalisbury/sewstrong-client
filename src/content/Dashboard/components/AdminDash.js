@@ -5,11 +5,13 @@ import { AdminDashVol } from './AdminDashVol';
 
 export const AdminDash = props => {
 
-    const [activeTab, setActiveTab] = useState('Volunteers')
-    const [adminTabsList, setAdminTabsList] = useState(['Volunteers','Customers','Orders']);
+    const [activeTab, setActiveTab] = useState(props.updateMade || 'Volunteers')
+    const [adminTabsList, setAdminTabsList] = useState(['Volunteers','Customers','Orders'])
+
 
     const handleTabToggle = e => {
         setActiveTab(e.target.getAttribute('name'));
+        props.setUpdateMade('false')
     };
 
     let tabs = adminTabsList.map(tab => {
@@ -40,6 +42,7 @@ export const AdminDash = props => {
                     name={vol.first_name + ' ' + vol.last_name}
                     zipcode={vol.zipcode}
                     roles={roles}
+                    setUpdateMade={props.setUpdateMade}
                 />
             })
         } else if (activeTab === 'Customers') {
@@ -48,6 +51,7 @@ export const AdminDash = props => {
                     key={cust._id}
                     name={cust.first_name + ' ' + cust.last_name}
                     zipcode={cust.zipcode}
+                    setUpdateMade={props.setUpdateMade}
                 />
             })
         } else if (activeTab === 'Orders') {
@@ -55,27 +59,46 @@ export const AdminDash = props => {
                 let item = ord.item.product.name
                 let total = ord.item.total
                 let status;
-                if (ord.cust_cancelled || ord.admin_cancelled || !ord.accepted) {
-                    status = 'black';
+                let currentStatus;
+                if (!ord.accepted) {
+                    status = 'red';
+                    currentStatus = 'Pending Accept'         
                 }
                 if (ord.accepted) {
-                    status = 'red';
+                    status = 'yellow';
+                    currentStatus = 'Accepted'
+                    
                 }
                 if (ord.in_progress) {
-                    status = 'orange'
+                    status = 'yellow';
+                    currentStatus = 'In Progress'
+                    
                 }
                 if (ord.ready_for_delivery) {
-                    status = 'yellow'
+                    currentStatus = 'Ready for Delivery'
+                    
+                }
+                if (ord.in_delivery) {
+                    currentStatus = 'In Delivery'
+                    
                 }
                 if (ord.completed) {
                     status = 'green'
+                    currentStatus='Completed'
+      
+                }
+                if (ord.cust_cancelled || ord.admin_cancelled) {
+                    status = 'red'
+                    currentStatus='Cancelled'
                 }
                 return <AdminDashOrder
                     item={item}
                     key={ord._id}
                     orderNo={ord._id}
                     status={status}
+                    currentStatus={currentStatus}
                     total={total}
+                    setUpdateMade={props.setUpdateMade}
                     className='dashboard__admin__item__order'
                 />
             })

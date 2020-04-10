@@ -9,10 +9,25 @@ import './style.scss';
 export const Dashboard = props => {
 
     const [data, setData] = useState([]);
-
+    const [updateMade, setUpdateMade] = useState('')
     useEffect(() => {
-
-    })
+        let token = localStorage.getItem('userToken')
+        fetch(`${process.env.REACT_APP_SERVER_URL}/admin`, {
+            headers: {
+                Authorization: `Bearer ${token}` 
+            }
+        })
+        .then(response => {
+            response.json()
+            .then(result => {
+                setData(result)
+                console.log(result)
+            })
+        })
+        .catch(err => {
+            console.log(`We're all fucked`)
+        })
+    }, [updateMade])
 
     if (!props.user) {
         return <Redirect to='/' />
@@ -28,6 +43,7 @@ export const Dashboard = props => {
             response.json()
             .then(result => {
                 setData(result)
+                console.log(result)
             })
         })
         .catch(err => {
@@ -55,6 +71,7 @@ export const Dashboard = props => {
                     volunteers={data[0].volunteers}
                     customers={data[1].customers}
                     orders={data[2].orders}
+                    setUpdateMade={setUpdateMade}
                 />
             </div>
         )

@@ -49,3 +49,8 @@ $serif: 'Suez One', serif;
 .background-orange {
     background-color: $content-orange;
 }
+
+//for clickable items that need pointer
+.cursor-pointer {
+    cursor: pointer;
+}
