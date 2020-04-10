@@ -11,7 +11,16 @@ export const Dashboard = props => {
 
     const [data, setData] = useState([]);
     const [updateMade, setUpdateMade] = useState('')
+    
     useEffect(() => {
+        if(props.user && props.user.is_admin) {
+            fetchAdminData()
+        }
+        
+    }, [updateMade])
+
+
+    const fetchAdminData = () => {
         let token = localStorage.getItem('userToken')
         fetch(`${process.env.REACT_APP_SERVER_URL}/admin`, {
             headers: {
@@ -27,28 +36,13 @@ export const Dashboard = props => {
         .catch(err => {
             console.log(`We're all fucked`)
         })
-    }, [updateMade])
+    }
 
     if (!props.user) {
         return <Redirect to='/' />
 
     } else if (props.user.is_admin && !data.length) {
-        let token = localStorage.getItem('userToken')
-        fetch(`${process.env.REACT_APP_SERVER_URL}/admin`, {
-            headers: {
-                Authorization: `Bearer ${token}` 
-            }
-        })
-        .then(response => {
-            response.json()
-            .then(result => {
-                setData(result)
-                console.log(result)
-            })
-        })
-        .catch(err => {
-            console.log(err)
-        })
+
     }
 
     let content;

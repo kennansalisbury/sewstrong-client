@@ -32,9 +32,11 @@ export const AdminDash = props => {
             content = props.volunteers.map(vol => {
                 let roles = ''
                 let inventory = ''
+                let makerId=''
                 if (vol.maker) {
                     roles += 'Maker'
                     inventory = vol.maker.inventory
+                    makerId = vol.maker._id
                 }
                 if (vol.driver) {
                     roles += ' Driver'
@@ -46,6 +48,7 @@ export const AdminDash = props => {
                     roles={roles}
                     setUpdateMade={props.setUpdateMade}
                     inventory = {inventory}
+                    makerId={makerId}
                 />
             })
         } else if (activeTab === 'Customers') {

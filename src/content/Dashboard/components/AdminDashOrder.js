@@ -115,7 +115,7 @@ export const AdminDashOrder = props => {
         }
         setShowUpdateStatus(false)
         setOrderStatusColor(color)
-        props.setUpdateMade('orders updated')
+        props.setUpdateMade(`order ${props.orderNo} updated to ${orderStatus}`)
     }
 
     let status = <button className='body-three cursor-pointer' onClick={() => setShowUpdateStatus(true)}>{orderStatus}</button>
