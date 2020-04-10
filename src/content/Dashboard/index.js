@@ -5,6 +5,7 @@ import { Header } from '../Partials';
 import { AdminDash, Aside } from './components';
 
 import './style.scss';
+import { UserDash } from './components/UserDash';
 
 export const Dashboard = props => {
 
@@ -31,7 +32,7 @@ export const Dashboard = props => {
             })
         })
         .catch(err => {
-            console.log(`We're all fucked`)
+            console.log(err)
         })
     }
 
@@ -50,11 +51,37 @@ export const Dashboard = props => {
                     volunteers={data[0].volunteers}
                     customers={data[1].customers}
                     orders={data[2].orders}
+                    type='Admin'
                 />
                 <AdminDash 
                     volunteers={data[0].volunteers}
                     customers={data[1].customers}
                     orders={data[2].orders}
+                />
+            </div>
+        )
+    } else if (props.user.customer) {
+        
+    } else {
+        let driverContent;
+        let makerContent;
+        if (props.user.maker) {
+            makerContent=props.user.maker
+            console.log(makerContent)
+        }
+        if (props.user.driver) {
+            driverContent=props.user.driver
+        }
+        content = (
+            <div className='dashboard'>
+                <Aside 
+                    user={props.user}
+                    driverContent={driverContent}
+                    makerContent={makerContent}
+                />
+                <UserDash
+                    driverContent={driverContent}
+                    makerContent={makerContent}
                 />
             </div>
         )
