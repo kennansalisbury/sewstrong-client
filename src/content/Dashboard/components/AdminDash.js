@@ -24,7 +24,6 @@ export const AdminDash = props => {
         )
     });
 
-
     let content;
     if (props) {
         if (activeTab === 'Volunteers') {
