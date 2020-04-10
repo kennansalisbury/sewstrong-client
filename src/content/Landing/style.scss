@@ -1,7 +1,5 @@
 @import '../../scss/mixins.scss';
 @import '../../scss/palette.scss';
-
-
 // page
 .landing {
     width: 100vw;
@@ -46,8 +44,6 @@
         }
     }
 }
-
-
 // // components
 .call-to-action {
     margin: 0 auto;
@@ -55,6 +51,13 @@
     border-radius: 20px;
     color: white;
     cursor: pointer;
+    &__small {
+        width: 10vw;
+        border-radius: 20px;
+        color: white;
+        margin: 1em;
+        cursor: pointer;
+    }
     @include responsive($med) {
         width: 33vw;
     }
@@ -90,7 +93,7 @@
     }
 }
 .info-large {
-    height: 15vh;
+    height: 20vh;
     width: 70vw;
     display: flex;
     align-items: center;
@@ -128,13 +131,12 @@
     margin: 0 auto;
     width: 80vw;
     min-height: 70vh;
-    // height: 100%;
     background-color: white;
     padding: 2% 4%;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 5% 1fr;
-    box-shadow: 0px 0px 5px .5px rgb(185, 185, 185);
+    box-shadow: 0px 0px 5px .5px $brand-green;
     border-radius: 10px;
     overflow: scroll;
     @include responsive($lg) {

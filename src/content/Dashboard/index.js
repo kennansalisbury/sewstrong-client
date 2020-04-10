@@ -5,6 +5,7 @@ import { Header } from '../Partials';
 import { AdminDash, Aside } from './components';
 
 import './style.scss';
+import { UserDash } from './components/UserDash';
 
 export const Dashboard = props => {
 
@@ -30,7 +31,6 @@ export const Dashboard = props => {
             response.json()
             .then(result => {
                 setData(result)
-                console.log(result)
             })
         })
         .catch(err => {
@@ -42,7 +42,7 @@ export const Dashboard = props => {
         return <Redirect to='/' />
 
     } else if (props.user.is_admin && !data.length) {
-        fetchAdminData()
+
     }
 
     let content;
@@ -60,12 +60,37 @@ export const Dashboard = props => {
                     volunteers={data[0].volunteers}
                     customers={data[1].customers}
                     orders={data[2].orders}
+                    type='Admin'
                 />
                 <AdminDash 
                     volunteers={data[0].volunteers}
                     customers={data[1].customers}
                     orders={data[2].orders}
                     setUpdateMade={setUpdateMade}
+                />
+            </div>
+        )
+    } else if (props.user.customer) {
+        
+    } else {
+        let driverContent;
+        let makerContent;
+        if (props.user.maker) {
+            makerContent=props.user.maker
+        }
+        if (props.user.driver) {
+            driverContent=props.user.driver
+        }
+        content = (
+            <div className='dashboard'>
+                <Aside 
+                    user={props.user}
+                    driverContent={driverContent}
+                    makerContent={makerContent}
+                />
+                <UserDash
+                    driverContent={driverContent}
+                    makerContent={makerContent}
                 />
             </div>
         )

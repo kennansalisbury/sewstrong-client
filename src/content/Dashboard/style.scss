@@ -28,10 +28,8 @@
             grid-template-columns: repeat(auto, 1fr);
             grid-template-rows: 100%;
             grid-auto-flow: column;
-            // display: flex;
-            // justify-content: flex-start;
-            // align-items: center;
             border: 2px solid $brand-green;
+            box-shadow: 0px 0px 5px .5px $brand-green;
             &__status {
                 height: 5vh;
                 width: 2.8vw;
@@ -72,6 +70,36 @@
             margin-bottom: -1.2em;
         }
     }
+    &__user {
+        height: 70vh;
+        width: 50vw;
+        border: 3px solid $brand-green;
+        box-shadow: 0px 0px 5px .5px $brand-green;
+        border-radius: 25px;
+        text-align: center;
+        &__inventories {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            &__add {
+                text-align: center;
+            }
+            &__input {
+                width: 6vw;
+            }
+            &__submit {
+                width: 30vw;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        &__item {
+            margin: 1em;
+        }
+    }
 }
 
 .aside {
@@ -82,6 +110,7 @@
     align-items: center;
     border: 3px solid $brand-green;
     border-radius: 25px;
+    box-shadow: 0px 0px 5px .5px $brand-green;
     &__content {
         height: 50vh;
         width: 90%;

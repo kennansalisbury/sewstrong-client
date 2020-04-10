@@ -30,32 +30,55 @@ export const Aside = props => {
     let currentMasks = 0;
     let currentOrders = 0;
 
+    let content;
     if (props) {
-        props.volunteers.forEach(vol => {
-            if (vol.maker) {
-                currentMakers++
-                vol.maker.inventory.forEach(item => {
-                    if (item.product.name === 'Mask') {
-                        currentMasks += item.total_units
-                    }
-                    if (item.product.name === 'Face Shield') {
-                        currentFaceShields += item.total_units
-                    }
-                    if (item.product.name === 'Gown') {
-                        currentGowns += item.total_units
-                    }
-                })
-            }
-            if (vol.driver) {
-                currentDrivers++
-            }
-        });
-        props.customers.forEach(cust => {
-            currentCustomers++
-        });
-        props.orders.forEach(ord => {
-            currentOrders++
-        })
+        if (props.type === 'Admin') {
+            props.volunteers.forEach(vol => {
+                if (vol.maker) {
+                    currentMakers++
+                    vol.maker.inventory.forEach(item => {
+                        if (item.product.name === 'Mask') {
+                            currentMasks += item.total_units
+                        }
+                        if (item.product.name === 'Face Shield') {
+                            currentFaceShields += item.total_units
+                        }
+                        if (item.product.name === 'Gown') {
+                            currentGowns += item.total_units
+                        }
+                    })
+                }
+                if (vol.driver) {
+                    currentDrivers++
+                }
+            });
+            props.customers.forEach(cust => {
+                currentCustomers++
+            });
+            props.orders.forEach(ord => {
+                currentOrders++
+            })
+            content = (
+                <div className='aside__content'>
+                    <AsideItem label='Masks' content={currentMasks} />
+                    <AsideItem label='Face Shields' content={currentFaceShields} />
+                    <AsideItem label='Gowns' content={currentGowns} />
+                    <AsideItem label='Makers' content={currentMakers} />
+                    <AsideItem label='Drivers' content={currentDrivers} />
+                    <AsideItem label='Customers' content={currentCustomers} />
+                    <AsideItem label='Orders' content={currentOrders} />
+                </div>
+            )
+        } 
+        else {
+            content = (
+                <div className='aside__content'>
+                    <AsideItem label='Masks' content='0' />
+                    <AsideItem label='Face Shields' content='0' />
+                    <AsideItem label='Gowns' content='0' />
+                </div>
+            )
+        }
     };
 
 
@@ -67,15 +90,7 @@ export const Aside = props => {
                     {tabs}
                 </div>
             </div>
-            <div className='aside__content'>
-                <AsideItem label='Masks' content={currentMasks} />
-                <AsideItem label='Face Shields' content={currentFaceShields} />
-                <AsideItem label='Gowns' content={currentGowns} />
-                <AsideItem label='Makers' content={currentMakers} />
-                <AsideItem label='Drivers' content={currentDrivers} />
-                <AsideItem label='Customers' content={currentCustomers} />
-                <AsideItem label='Orders' content={currentOrders} />
-            </div>
+            {content}
             <div className='aside__footer'></div>
         </div>
     )
