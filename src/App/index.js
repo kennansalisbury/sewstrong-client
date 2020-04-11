@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 // pages
-import { About } from '../About';
-import { Contact } from '../Contact';
-import { Dashboard } from '../Dashboard';
-import { Landing } from '../Landing';
+import { About } from '../content/About';
+import { Contact } from '../content/Contact';
+import { Dashboard } from '../content/Dashboard';
+import { Landing } from '../content/Landing';
 // partials
-import { Footer } from '../Partials';
+import { Footer } from '../content/Partials';
 // routes
-import * as ROUTES from '../../constants/routes';
+import * as ROUTES from '../constants/routes';
 // styles
 import './style.scss';
 
