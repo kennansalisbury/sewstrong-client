@@ -212,7 +212,7 @@ export const SignupForm = props => {
         //set post url based on sign up type
         let postUrl
         props.signupType === 'VOLUNTEER' ? postUrl = '/auth/signup/volunteer' : postUrl = '/auth/signup/order'
-        console.log(`${process.env.REACT_APP_SERVER_URL}${postUrl}`)
+
 
 
         //post to signup
