@@ -29,7 +29,7 @@ export const App = () => {
             response.json()
             .then(results => {
                 if (response.ok) {
-                    console.log('products results', products)
+                    // console.log('products results', products)
                     setProducts(results);
                 } else {
                     console.log(results.message);
@@ -40,8 +40,6 @@ export const App = () => {
             console.log(err);
         })
     }, [])
-
-    console.log(products)
 
     const decodeToken = existingToken => {
         let token = existingToken || localStorage.getItem('userToken');
@@ -66,8 +64,6 @@ export const App = () => {
             return;
         }
     };
-
-    console.log('USER at app level', user)
     return (
         <Router>
             <div>

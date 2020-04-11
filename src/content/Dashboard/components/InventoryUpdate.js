@@ -9,7 +9,7 @@ export const InventoryUpdate = props => {
     const [editedInventory, setEditedInventory] = useState(0)
     const [collectedInventory, setCollectedInventory] = useState(0)
 
-    console.log(props.makerId, props.productId)
+    // console.log(props.makerId, props.productId)
     const handleUpdateSubmit = e => {
         e.preventDefault()
 
@@ -23,7 +23,7 @@ export const InventoryUpdate = props => {
             total_inventory_to_date
         }
 
-        console.log('update data', data)
+        // console.log('update data', data)
         let token = localStorage.getItem('userToken')
         fetch(`${process.env.REACT_APP_SERVER_URL}/volunteers/inventory`, {
             method: 'PUT',
@@ -37,7 +37,7 @@ export const InventoryUpdate = props => {
             response.json()
             .then(result => {
                 if (response.ok) {
-                    console.log('updated inventory', result)
+                    // console.log('updated inventory', result)
                     setInventory(total_units)
                     props.setUpdateMade('inventory updated, total inventory to date', total_inventory_to_date)
                     setNewInventory(0)
@@ -60,9 +60,9 @@ export const InventoryUpdate = props => {
 
         
         let diff = editedInventory - inventory
-        console.log('diff', diff, 'is equal to edited inventory', editedInventory, 'minus inventory', inventory)
+        // console.log('diff', diff, 'is equal to edited inventory', editedInventory, 'minus inventory', inventory)
         let total_inventory_to_date = props.total_inventory_to_date + diff
-        console.log('total inventory', total_inventory_to_date, 'is equal to total inventory', props.total_inventory_to_date, 'plus diff', diff)
+        // console.log('total inventory', total_inventory_to_date, 'is equal to total inventory', props.total_inventory_to_date, 'plus diff', diff)
 
         let data = {
             product: props.productId,
@@ -84,7 +84,7 @@ export const InventoryUpdate = props => {
             response.json()
             .then(result => {
                 if (response.ok) {
-                    console.log('edited inventory', result)
+                    // console.log('edited inventory', result)
                     setInventory(editedInventory)
                 } else {
                     props.setMessage(`${result.message}`);
@@ -95,7 +95,7 @@ export const InventoryUpdate = props => {
             props.setMessage(`Error connecting to server, please try again later.`)
         })
 
-        console.log('edited data', data)
+        // console.log('edited data', data)
         setShowEditInventory(false)
         setShowUpdateInventory(false)
         props.setMessage('')
