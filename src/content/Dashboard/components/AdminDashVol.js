@@ -6,7 +6,7 @@ export const AdminDashVol = props => {
     const [message, setMessage] = useState('')
 
     let inventory = ''
-    if(props.inventory) {
+    if(props.makerId && props.inventory) {
         inventory = props.inventory.map((product, i) => {
             return (
                 <div className='dashboard__admin__item__column'>
@@ -23,6 +23,25 @@ export const AdminDashVol = props => {
             )
         })
     }
+    // console.log('for maker:', props.makerId && !props.inventory.length && props.products)
+    // console.log(props)
+    // if(props.makerId && !props.inventory.length && props.products) {
+    //     inventory = props.products.map((product, i) => {
+    //         return(
+    //             <div className='dashboard__admin__item__column'>
+    //                     <InventoryUpdate
+    //                         productId={product._id}
+    //                         name={product.name}
+    //                         inventory={0}
+    //                         total_inventory_to_date={0}
+    //                         setUpdateMade={props.setUpdateMade}
+    //                         makerId={props.makerId}
+    //                         setMessage={setMessage}
+    //                     />
+    //             </div>
+    //         )
+    //     })   
+    // }
 
     return (
         <>

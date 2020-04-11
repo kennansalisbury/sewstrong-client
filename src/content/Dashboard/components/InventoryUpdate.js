@@ -131,11 +131,9 @@ export const InventoryUpdate = props => {
         )
     }
 
-
-
     return (
         <>
-            <div className='body-two'>{props.name}</div>
+            <div className='body-two'>{props.name}s</div>
             <div className='body-two'>{inventory}</div>
             <div className='body-two'>{inventoryUpdate}</div>
             <div className='body-two'>{inventoryEdit}</div>
