@@ -39,6 +39,9 @@ export const InventoryUpdate = props => {
                 if (response.ok) {
                     console.log('updated inventory', result)
                     setInventory(total_units)
+                    props.setUpdateMade('inventory updated, total inventory to date', total_inventory_to_date)
+                    setNewInventory(0)
+                    setCollectedInventory(0)
                 } else {
                     props.setMessage(`${result.message}`);
                 }
@@ -50,7 +53,6 @@ export const InventoryUpdate = props => {
 
         setShowEditInventory(false)
         setShowUpdateInventory(false)
-        props.setUpdateMade('inventory updated, total inventory to date', total_inventory_to_date)
     }
 
     const handleEditSubmit = e => {
@@ -106,9 +108,9 @@ export const InventoryUpdate = props => {
         inventoryUpdate = (
             <form className="dashboard__admin__item__column" onSubmit={handleUpdateSubmit}>
                 <label className="small-text">New </label>
-                <input type='number' step='10' value={newInventory} onChange={e => setNewInventory(parseInt(e.currentTarget.value)) } />
+                <input type='number' step='10' min='0' value={newInventory} onChange={e => setNewInventory(parseInt(e.currentTarget.value)) } />
                 <label className="small-text">Collected </label>
-                <input type='number' step='10' value={collectedInventory} onChange={e => setCollectedInventory(parseInt(e.currentTarget.value)) } />
+                <input type='number' step='10' min='0' value={collectedInventory} onChange={e => setCollectedInventory(parseInt(e.currentTarget.value)) } />
                 <input type="submit" value="UPDATE"/>
             </form>
         )
@@ -122,7 +124,7 @@ export const InventoryUpdate = props => {
     if(showEditInventory) {
         inventoryEdit = (
             <form onSubmit={handleEditSubmit}>
-                <input type='number' step='10' value={editedInventory} onChange={e => setEditedInventory(parseInt(e.currentTarget.value)) } />
+                <input type='number' step='10' value={editedInventory} min='0' onChange={e => setEditedInventory(parseInt(e.currentTarget.value)) } />
                 {/* <small className="small-text">Please use this only if there was an error inputting your current inventory. If you are updating to account for new inventory created and/or inventory collected, please use the "update" function.</small> */}
                 <input type="submit" value="EDIT"/>
             </form>

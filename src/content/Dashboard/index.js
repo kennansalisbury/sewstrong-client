@@ -47,7 +47,7 @@ export const Dashboard = props => {
 
     let content;
     // no user; 
-    if (!props.user) {
+    if (!props.user || !data.length) {
         content = (
             <div className='dashboard'>
                 Loading

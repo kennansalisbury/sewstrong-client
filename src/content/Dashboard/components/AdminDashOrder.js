@@ -61,6 +61,7 @@ export const AdminDashOrder = props => {
                         cust_cancelled: false,
                         admin_cancelled: false
                     }
+                    color = 'yellow'
                     break   
                 case 'In Delivery':
                     data = {
