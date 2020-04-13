@@ -44,6 +44,7 @@ export const AdminDashOrder = props => {
                     break
                 case 'In Progress':
                     data = {
+                        accepted: true,
                         in_progress: true,
                         ready_for_delivery: false,
                         in_delivery: false,
@@ -55,15 +56,21 @@ export const AdminDashOrder = props => {
                     break
                 case 'Ready for Delivery':
                     data = {
+                        accepted: true,
+                        in_progress: true,
                         ready_for_delivery: true,
                         in_delivery: false,
                         completed: false,
                         cust_cancelled: false,
                         admin_cancelled: false
                     }
+                    color = 'yellow'
                     break   
                 case 'In Delivery':
                     data = {
+                        accepted: true,
+                        in_progress: true,
+                        ready_for_delivery: true,
                         in_delivery: true,
                         completed: false,
                         cust_cancelled: false,
@@ -73,6 +80,10 @@ export const AdminDashOrder = props => {
                     break
                 case 'Completed':
                     data = {
+                        accepted: true,
+                        in_progress: true,
+                        ready_for_delivery: true,
+                        in_delivery: true,
                         completed: true,
                         cust_cancelled: false,
                         admin_cancelled: false

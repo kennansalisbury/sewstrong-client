@@ -34,7 +34,7 @@ export const Dashboard = props => {
             })
         })
         .catch(err => {
-            console.log(`We're all fucked`)
+            console.log(`Error fetching data`)
         })
     }
 
@@ -47,13 +47,13 @@ export const Dashboard = props => {
 
     let content;
     // no user; 
-    if (!props.user) {
+    if (!props.user || !data.length) {
         content = (
             <div className='dashboard'>
                 Loading
             </div>
         )
-    } else if (props.user.is_admin && data.length) {
+    } else if (props.user.is_admin && data.length && props.products) {
         content = (
             <div className='dashboard'>
                 <Aside
@@ -67,6 +67,7 @@ export const Dashboard = props => {
                     customers={data[1].customers}
                     orders={data[2].orders}
                     setUpdateMade={setUpdateMade}
+                    products={props.products}
                 />
             </div>
         )

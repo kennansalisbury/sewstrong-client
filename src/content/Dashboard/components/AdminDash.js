@@ -29,6 +29,9 @@ export const AdminDash = props => {
     let content;
     if (props) {
         if (activeTab === 'Volunteers') {
+            if(props.volunteers.length) {
+
+            
             content = props.volunteers.map(vol => {
                 let roles = ''
                 let inventory = ''
@@ -51,21 +54,33 @@ export const AdminDash = props => {
                     makerId={makerId}
                 />
             })
+            }
+            else {
+                content = <div>No volunteers yet.</div>
+            }
         } else if (activeTab === 'Customers') {
-            content = props.customers.map(cust => {
-                let activeOrders = cust.customer.orders.filter(order => order.accepted && !order.completed && !order.admin_cancelled && !order.cust_cancelled)
-                let pendingOrders = cust.customer.orders.filter(order => !order.accepted)
-                return <AdminDashCust
-                    key={cust._id}
-                    organization = {cust.customer.organization}
-                    activeOrders = {activeOrders.length}
-                    pendingOrders = {pendingOrders.length}
-                    name={cust.first_name + ' ' + cust.last_name}
-                    zipcode={cust.zipcode}
-                    setUpdateMade={props.setUpdateMade}
-                />
-            })
+            console.log(props.customers)
+            if(props.customers.length) {
+                content = props.customers.map(cust => {
+                    let activeOrders = cust.customer.orders.filter(order => order.accepted && !order.completed && !order.admin_cancelled && !order.cust_cancelled)
+                    let pendingOrders = cust.customer.orders.filter(order => !order.accepted)
+                    return <AdminDashCust
+                        key={cust._id}
+                        organization = {cust.customer.organization}
+                        activeOrders = {activeOrders.length}
+                        pendingOrders = {pendingOrders.length}
+                        name={cust.first_name + ' ' + cust.last_name}
+                        zipcode={cust.zipcode}
+                        setUpdateMade={props.setUpdateMade}
+                    />
+                })
+            }
+            else {
+                content = <div>No customers yet.</div>
+            }
+            
         } else if (activeTab === 'Orders') {
+            if(props.orders.length) {
             content = props.orders.map(ord => {
                 let item = ord.item.product.name
                 let total = ord.item.total
@@ -114,6 +129,10 @@ export const AdminDash = props => {
                     className='dashboard__admin__item__order'
                 />
             })
+            }
+            else {
+                content = <div>No orders yet.</div>
+            }
         }
     }
 

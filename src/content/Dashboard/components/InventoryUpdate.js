@@ -9,7 +9,7 @@ export const InventoryUpdate = props => {
     const [editedInventory, setEditedInventory] = useState(0)
     const [collectedInventory, setCollectedInventory] = useState(0)
 
-    console.log(props.makerId, props.productId)
+    // console.log(props.makerId, props.productId)
     const handleUpdateSubmit = e => {
         e.preventDefault()
 
@@ -23,7 +23,7 @@ export const InventoryUpdate = props => {
             total_inventory_to_date
         }
 
-        console.log('update data', data)
+        // console.log('update data', data)
         let token = localStorage.getItem('userToken')
         fetch(`${process.env.REACT_APP_SERVER_URL}/volunteers/inventory`, {
             method: 'PUT',
@@ -37,8 +37,11 @@ export const InventoryUpdate = props => {
             response.json()
             .then(result => {
                 if (response.ok) {
-                    console.log('updated inventory', result)
+                    // console.log('updated inventory', result)
                     setInventory(total_units)
+                    props.setUpdateMade('inventory updated, total inventory to date', total_inventory_to_date)
+                    setNewInventory(0)
+                    setCollectedInventory(0)
                 } else {
                     props.setMessage(`${result.message}`);
                 }
@@ -50,7 +53,6 @@ export const InventoryUpdate = props => {
 
         setShowEditInventory(false)
         setShowUpdateInventory(false)
-        props.setUpdateMade('inventory updated, total inventory to date', total_inventory_to_date)
     }
 
     const handleEditSubmit = e => {
@@ -58,9 +60,9 @@ export const InventoryUpdate = props => {
 
         
         let diff = editedInventory - inventory
-        console.log('diff', diff, 'is equal to edited inventory', editedInventory, 'minus inventory', inventory)
+        // console.log('diff', diff, 'is equal to edited inventory', editedInventory, 'minus inventory', inventory)
         let total_inventory_to_date = props.total_inventory_to_date + diff
-        console.log('total inventory', total_inventory_to_date, 'is equal to total inventory', props.total_inventory_to_date, 'plus diff', diff)
+        // console.log('total inventory', total_inventory_to_date, 'is equal to total inventory', props.total_inventory_to_date, 'plus diff', diff)
 
         let data = {
             product: props.productId,
@@ -82,7 +84,7 @@ export const InventoryUpdate = props => {
             response.json()
             .then(result => {
                 if (response.ok) {
-                    console.log('edited inventory', result)
+                    // console.log('edited inventory', result)
                     setInventory(editedInventory)
                 } else {
                     props.setMessage(`${result.message}`);
@@ -93,7 +95,7 @@ export const InventoryUpdate = props => {
             props.setMessage(`Error connecting to server, please try again later.`)
         })
 
-        console.log('edited data', data)
+        // console.log('edited data', data)
         setShowEditInventory(false)
         setShowUpdateInventory(false)
         props.setMessage('')
@@ -106,9 +108,9 @@ export const InventoryUpdate = props => {
         inventoryUpdate = (
             <form className="dashboard__admin__item__column" onSubmit={handleUpdateSubmit}>
                 <label className="small-text">New </label>
-                <input type='number' step='10' value={newInventory} onChange={e => setNewInventory(parseInt(e.currentTarget.value)) } />
+                <input type='number' step='10' min='0' value={newInventory} onChange={e => setNewInventory(parseInt(e.currentTarget.value)) } />
                 <label className="small-text">Collected </label>
-                <input type='number' step='10' value={collectedInventory} onChange={e => setCollectedInventory(parseInt(e.currentTarget.value)) } />
+                <input type='number' step='10' min='0' value={collectedInventory} onChange={e => setCollectedInventory(parseInt(e.currentTarget.value)) } />
                 <input type="submit" value="UPDATE"/>
             </form>
         )
@@ -122,18 +124,16 @@ export const InventoryUpdate = props => {
     if(showEditInventory) {
         inventoryEdit = (
             <form onSubmit={handleEditSubmit}>
-                <input type='number' step='10' value={editedInventory} onChange={e => setEditedInventory(parseInt(e.currentTarget.value)) } />
+                <input type='number' step='10' value={editedInventory} min='0' onChange={e => setEditedInventory(parseInt(e.currentTarget.value)) } />
                 {/* <small className="small-text">Please use this only if there was an error inputting your current inventory. If you are updating to account for new inventory created and/or inventory collected, please use the "update" function.</small> */}
                 <input type="submit" value="EDIT"/>
             </form>
         )
     }
 
-
-
     return (
         <>
-            <div className='body-two'>{props.name}</div>
+            <div className='body-two'>{props.name}s</div>
             <div className='body-two'>{inventory}</div>
             <div className='body-two'>{inventoryUpdate}</div>
             <div className='body-two'>{inventoryEdit}</div>

@@ -91,6 +91,13 @@ export const SignupForm = props => {
         let userType
 
         //VOLUNTEER ------------------
+        let makerInventory = props.products.map((product) => {
+            return ({
+                product: product._id,
+                total_units: 0,
+                total_inventory_to_date: 0
+            })
+        })
 
         //maker
         if(isMaker && !isDriver) {
@@ -108,10 +115,9 @@ export const SignupForm = props => {
                     address_one: address1,
                     address_two: address2,
                     city,
-                    state,
-                    total_inventory_to_date: 0,
-                    inventory: []
-                }
+                    state
+                },
+                inventory: makerInventory
             }
         }
         //driver
@@ -145,10 +151,9 @@ export const SignupForm = props => {
                     address_one: address1,
                     address_two: address2,
                     city,
-                    state,
-                    total_inventory_to_date: 0,
-                    inventory: []
-                }
+                    state
+                },
+                inventory: makerInventory
             }
         }
 
@@ -207,7 +212,7 @@ export const SignupForm = props => {
         //set post url based on sign up type
         let postUrl
         props.signupType === 'VOLUNTEER' ? postUrl = '/auth/signup/volunteer' : postUrl = '/auth/signup/order'
-        console.log(`${process.env.REACT_APP_SERVER_URL}${postUrl}`)
+
 
 
         //post to signup
