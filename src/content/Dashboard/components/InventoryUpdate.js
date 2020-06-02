@@ -37,8 +37,9 @@ export const InventoryUpdate = props => {
             response.json()
             .then(result => {
                 if (response.ok) {
-                    // console.log('updated inventory', result)
+                    console.log('updated inventory', result)
                     setInventory(total_units)
+                    props.setInventory(result)
                     props.setUpdateMade('inventory updated, total inventory to date', total_inventory_to_date)
                     setNewInventory(0)
                     setCollectedInventory(0)
@@ -60,9 +61,9 @@ export const InventoryUpdate = props => {
 
         
         let diff = editedInventory - inventory
-        // console.log('diff', diff, 'is equal to edited inventory', editedInventory, 'minus inventory', inventory)
+        console.log('diff', diff, 'is equal to edited inventory', editedInventory, 'minus inventory', inventory)
         let total_inventory_to_date = props.total_inventory_to_date + diff
-        // console.log('total inventory', total_inventory_to_date, 'is equal to total inventory', props.total_inventory_to_date, 'plus diff', diff)
+        console.log('total inventory', total_inventory_to_date, 'is equal to total inventory', props.total_inventory_to_date, 'plus diff', diff)
 
         let data = {
             product: props.productId,
@@ -84,8 +85,9 @@ export const InventoryUpdate = props => {
             response.json()
             .then(result => {
                 if (response.ok) {
-                    // console.log('edited inventory', result)
+                    console.log('edited inventory', result)
                     setInventory(editedInventory)
+                    props.setInventory(result)
                 } else {
                     props.setMessage(`${result.message}`);
                 }

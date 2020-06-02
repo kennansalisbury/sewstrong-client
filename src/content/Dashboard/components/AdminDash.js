@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { AdminDashCust } from './AdminDashCust';
 import { AdminDashOrder } from './AdminDashOrder';
-import { AdminDashVol } from './AdminDashVol';
+import { AdminDashInventory } from './AdminDashInventory';
 
 export const AdminDash = props => {
 
     const [activeTab, setActiveTab] = useState(props.updateMade || 'Volunteers')
-    const [adminTabsList, setAdminTabsList] = useState(['Volunteers','Customers','Orders'])
+    const [adminTabsList, setAdminTabsList] = useState(['Volunteers', 'Inventory', 'Customers','Orders'])
 
 
     const handleTabToggle = e => {
@@ -28,29 +28,35 @@ export const AdminDash = props => {
 
     let content;
     if (props) {
-        if (activeTab === 'Volunteers') {
+        if (activeTab === 'Inventory') {
             if(props.volunteers.length) {
 
-            
-            content = props.volunteers.map(vol => {
-                let roles = ''
-                let inventory = ''
+            let makersFiltered = props.volunteers.filter(vol => vol.maker)
+            content = makersFiltered.map(vol => {
+                let roles = []
+                // let inventory = ''
                 let makerId=''
                 if (vol.maker) {
-                    roles += 'Maker'
-                    inventory = vol.maker.inventory
+                    roles = [...roles, 'Maker']
+                    // inventory = vol.maker.inventory
                     makerId = vol.maker._id
                 }
                 if (vol.driver) {
-                    roles += ' Driver'
+                    roles = [...roles, 'Driver']
                 }
-                return <AdminDashVol
+                if (vol.is_admin) {
+                    roles = [...roles, 'Admin']
+                }
+                if (vol.other) {
+                    roles = [...roles, vol.other]
+                }
+                return <AdminDashInventory
                     key={vol._id}
                     name={vol.first_name + ' ' + vol.last_name}
-                    zipcode={vol.zipcode}
+                    phone={vol.phone}
                     roles={roles}
                     setUpdateMade={props.setUpdateMade}
-                    inventory = {inventory}
+                    // inventory = {inventory}
                     makerId={makerId}
                 />
             })
