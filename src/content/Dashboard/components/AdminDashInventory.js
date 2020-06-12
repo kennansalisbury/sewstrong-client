@@ -63,9 +63,14 @@ export const AdminDashInventory = props => {
     return (
         <>
         <div className='dashboard__admin__item body-two'>
-            {props.name}<br />
-            {props.phone}<br />
-            <div>{roles}</div>
+            <div className='dashboard__admin__item__column'>
+                <h4>{props.name}</h4>
+                {/* <br /> */}
+                {/* {props.phone}<br /> */}
+                {props.roles[0]}<br />
+                {props.roles[1] ? props.roles[1] : ''}
+            </div>
+            {/* <div className='dashboard__admin__item__column'></div> */}
             {showInventory}
         </div>
         <small>{message}</small>
